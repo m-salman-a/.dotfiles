@@ -112,6 +112,12 @@ lspconfig.lua_ls.setup({
 		end
 
 		client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+			runtime = {
+				-- Tell the language server which version of Lua you're using
+				-- (most likely LuaJIT in the case of Neovim)
+				version = "LuaJIT",
+			},
+			-- Make the server aware of Neovim runtime files
 			workspace = {
 				checkThirdParty = false,
 				library = {
@@ -152,9 +158,8 @@ flutter_tools.setup({
 		settings = {
 			renameFilesWithClasses = "prompt",
 			analysisExcludedFolders = {
-				".fvm",
-				"/Users/mohammadalfarisi/.fvm",
-				"/Users/mohammadalfarisi/.pub-cache",
+				vim.env.HOME .. "/.fvm",
+				vim.env.HOME .. "/.pub-cache",
 			},
 			completeFunctionCalls = true,
 			updateImportsOnRename = true,
