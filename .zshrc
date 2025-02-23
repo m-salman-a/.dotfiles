@@ -5,22 +5,25 @@ if [[ $TMUX ]]; then
   alias clear="clear && tmux clear-history"
 fi
 
-export JAVA_HOME=`/usr/libexec/java_home -v 17`
+# if using Neovim development build
+alias nvim="/opt/nvim/bin/nvim"
 
-export ANDROID_HOME="/Users/$USER/Library/Android/sdk"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk-17.jdk"
+export PATH="$(brew --prefix)/opt/openjdk@17/bin:$PATH"
+
+export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH="$PATH:$ANDROID_HOME/emulator"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
-export GEM_HOME="$HOME/.gem"
-
 export FVM_CACHE_PATH="$HOME/.fvm"
 
+# export dart for global packages
 export PATH="$PATH":"$FVM_CACHE_PATH/default/bin/cache/dart-sdk/bin"
+
+# export global dart packages
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 
-export PATH="/Users/mohammadalfarisi/.shorebird/bin:$PATH"
-
-export PATH="/opt/nvim/bin:$PATH"
+export PATH="$HOME/.shorebird/bin:$PATH"
 
 # zsh-completions
 if type brew &>/dev/null; then
@@ -29,8 +32,6 @@ if type brew &>/dev/null; then
   autoload -Uz compinit
   compinit
 fi
-
-source ~/.zsh/catppuccin_frappe-zsh-syntax-highlighting.zsh
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
