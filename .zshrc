@@ -5,9 +5,6 @@ if [[ $TMUX ]]; then
   alias clear="clear && tmux clear-history"
 fi
 
-# if using Neovim development build
-alias nvim="/opt/nvim/bin/nvim"
-
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk-17.jdk"
 export PATH="$(brew --prefix)/opt/openjdk@17/bin:$PATH"
 
