@@ -28,7 +28,11 @@ if not has_lspconfig then
 	return
 end
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities() or {}
+local capabilities = {}
+local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if has_cmp then
+	capabilities = cmp_nvim_lsp.default_capabilities()
+end
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
