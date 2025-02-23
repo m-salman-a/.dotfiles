@@ -22,12 +22,9 @@ export PATH="/Users/mohammadalfarisi/.shorebird/bin:$PATH"
 
 export PATH="/opt/nvim/bin:$PATH"
 
-# Zsh completions
+# zsh-completions
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-
-  # Git completions
-  fpath=(~/.zsh $fpath)
 
   autoload -Uz compinit
   compinit
