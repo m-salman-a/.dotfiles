@@ -1,5 +1,8 @@
-alias ls="ls --color -l"
-alias flutter="fvm flutter"
+alias ls="ls --color"
+alias ll="ls --color -al"
+alias lg="lazygit"
+
+alias ff="fvm flutter"
 
 if [[ $TMUX ]]; then
   alias clear="clear && tmux clear-history"
