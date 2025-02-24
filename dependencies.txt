@@ -1,11 +1,14 @@
 alacritty
 fd
+git
+gnupg
 lazygit
 neovim
-openjdk@17
 ripgrep
 starship
+stow
 tmux
+tree
 zsh-autosuggestions
 zsh-completions
 zsh-history-substring-search
