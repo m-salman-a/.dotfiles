@@ -1,0 +1,12 @@
+alacritty
+fd
+lazygit
+neovim
+openjdk@17
+ripgrep
+starship
+tmux
+zsh-autosuggestions
+zsh-completions
+zsh-history-substring-search
+zsh-syntax-highlighting
