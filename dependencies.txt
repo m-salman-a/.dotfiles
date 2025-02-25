@@ -1,5 +1,6 @@
 alacritty
 fd
+font-meslo-lg-nerd-font
 git
 gnupg
 lazygit
