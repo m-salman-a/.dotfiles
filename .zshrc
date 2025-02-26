@@ -9,7 +9,6 @@ if [[ $TMUX ]]; then
 fi
 
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home"
-export PATH="$(brew --prefix)/opt/openjdk@17/bin:$PATH"
 
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH="$PATH:$ANDROID_HOME/emulator"
