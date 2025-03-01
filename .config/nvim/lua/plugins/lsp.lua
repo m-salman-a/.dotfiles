@@ -2,37 +2,58 @@ local servers = { "lua_ls", "ts_ls", "jsonls" }
 
 local on_attach = function(_, buffer)
 	local has_telescope, telescope_builtin = pcall(require, "telescope.builtin")
-	local opts = { noremap = true, silent = true, buffer = buffer }
+	local keymaps = {
+		{ "gd", vim.lsp.buf.definition, desc = "[G]et [D]efinition" },
+		{ "gD", vim.lsp.buf.declaration, desc = "[G]et [D]eclaration" },
+		{ "gy", vim.lsp.buf.type_definition, desc = "[G]et T[y]pe Definition" },
+		{
+			"gI",
+			function()
+				if has_telescope then
+					telescope_builtin.lsp_implementations()
+				else
+					vim.lsp.buf.implementation()
+				end
+			end,
+			desc = "[G]et [I]mplementations",
+		},
+		{
+			"gr",
+			function()
+				if has_telescope then
+					telescope_builtin.lsp_references()
+				else
+					vim.lsp.buf.references()
+				end
+			end,
+			desc = "[G]et [R]eferences",
+		},
+		{
+			"<leader>fs",
+			function()
+				if has_telescope then
+					telescope_builtin.lsp_document_symbols()
+				else
+					vim.lsp.buf.document_symbol()
+				end
+			end,
+			desc = "[F]ind [S]ymbols",
+		},
+		{ "<leader>ca", vim.lsp.buf.code_action, desc = "[C]ode [A]ction" },
+		{ "<leader>rn", vim.lsp.buf.rename, desc = "[R]e[n]ame" },
+	}
 
 	-- For other defaults use:
 	-- :help lsp-defaults
 
-	vim.keymap.set("n", "gd", "<C-]>")
-	vim.keymap.set("n", "gI", function()
-		if has_telescope then
-			telescope_builtin.lsp_implementations()
-		else
-			vim.lsp.buf.implementation()
-		end
-	end, opts)
-	vim.keymap.set("n", "gr", function()
-		if has_telescope then
-			telescope_builtin.lsp_references()
-		else
-			vim.lsp.buf.references()
-		end
-	end, opts)
-	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-	vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, opts)
-	vim.keymap.set("n", "<leader>fs", function()
-		if has_telescope then
-			telescope_builtin.lsp_document_symbols()
-		else
-			vim.lsp.buf.document_symbol()
-		end
-	end, opts)
-	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+	for _, keys in ipairs(keymaps) do
+		local lhs = keys[1]
+		local rhs = keys[2]
+		keys[1] = nil
+		keys[2] = nil
+		keys.buffer = buffer
+		vim.keymap.set("n", lhs, rhs, keys)
+	end
 end
 
 return {
