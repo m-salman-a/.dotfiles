@@ -1,7 +1,5 @@
 local servers = { "lua_ls", "ts_ls", "jsonls" }
 
-local handlers = require("plugins.lsp.handlers")
-
 return {
 	{
 		"williamboman/mason.nvim",
@@ -25,13 +23,17 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
+			-- These need to be loaded first.
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 		},
 		config = function()
 			for _, server in ipairs(servers) do
+				local handlers = require("plugins.lsp.handlers")
+				local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 				require("lspconfig")[server].setup(vim.tbl_deep_extend("force", handlers[server] or {}, {
-					capabilities = require("cmp_nvim_lsp").default_capabilities(),
+					capabilities = capabilities,
 					on_attach = handlers.on_attach,
 				}))
 			end
@@ -53,28 +55,35 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
-		opts = {
-			fvm = true,
-			lsp = {
-				color = {
-					enabled = true,
-					virtual_text = true,
-				},
-				on_attach = handlers.on_attach,
-				settings = {
-					renameFilesWithClasses = "prompt",
-					analysisExcludedFolders = {
-						vim.env.HOME .. "/.fvm",
-						vim.env.HOME .. "/.pub-cache",
+		config = function()
+			local handlers = require("plugins.lsp.handlers")
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+			require("flutter-tools").setup({
+				fvm = true,
+				lsp = {
+					color = {
+						enabled = true,
+						virtual_text = true,
 					},
-					completeFunctionCalls = true,
-					updateImportsOnRename = true,
-					showTodos = true,
+					cmd = { "dart", "language-server", "--protocol=lsp" },
+					on_attach = handlers.on_attach,
+					capabilities = capabilities,
+					settings = {
+						showTodos = true,
+						completeFunctionCalls = true,
+						analysisExcludedFolders = {
+							vim.env.HOME .. "/.fvm",
+							vim.env.HOME .. "/.pub-cache",
+						},
+						renameFilesWithClasses = "prompt",
+						updateImportsOnRename = true,
+					},
 				},
-			},
-			closing_tags = {
-				enabled = false,
-			},
-		},
+				closing_tags = {
+					enabled = false,
+				},
+			})
+		end,
 	},
 }
