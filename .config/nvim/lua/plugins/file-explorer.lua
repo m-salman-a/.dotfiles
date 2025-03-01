@@ -33,6 +33,8 @@ return {
 			api.events.subscribe(api.events.Event.FileCreated, function(file)
 				vim.cmd("edit " .. file.fname)
 			end)
+
+			vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
 		end,
 	},
 }
