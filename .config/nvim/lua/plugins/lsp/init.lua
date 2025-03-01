@@ -29,42 +29,11 @@ return {
 			"williamboman/mason-lspconfig.nvim",
 		},
 		config = function()
-			local opts = {
-				capabilities = require("cmp_nvim_lsp").default_capabilities(),
-				on_attach = handlers.on_attach,
-			}
-
 			for _, server in ipairs(servers) do
-				if server == "lua_ls" then
-					opts = vim.tbl_deep_extend("force", opts, {
-						on_init = function(client)
-							local path = client.workspace_folders[1].name
-							if
-								vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc")
-							then
-								return
-							end
-
-							client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
-								runtime = {
-									version = "LuaJIT",
-								},
-								-- Make the server aware of Neovim runtime files
-								workspace = {
-									checkThirdParty = false,
-									library = {
-										vim.env.VIMRUNTIME,
-									},
-								},
-							})
-						end,
-						settings = {
-							Lua = {},
-						},
-					})
-				end
-
-				require("lspconfig")[server].setup(opts)
+				require("lspconfig")[server].setup(vim.tbl_deep_extend("force", handlers[server] or {}, {
+					capabilities = require("cmp_nvim_lsp").default_capabilities(),
+					on_attach = handlers.on_attach,
+				}))
 			end
 		end,
 	},
