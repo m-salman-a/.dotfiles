@@ -1,8 +1,5 @@
 local opts = { noremap = true, silent = true }
 
--- Copy to clipboard
-vim.keymap.set("v", "<C-c>", '"+y', opts)
-
 -- Resize with arrows
 vim.keymap.set("n", "<M-h>", ":vertical resize -2<CR>", opts)
 vim.keymap.set("n", "<M-j>", ":resize +2<CR>", opts)
