@@ -56,6 +56,10 @@ return {
 				noremap = true,
 				desc = "[F]ind by [G]rep",
 			})
+			vim.keymap.set("n", "<leader>fb", builtin.buffers, {
+				noremap = true,
+				desc = "[F]ind [B]uffers",
+			})
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags, {
 				noremap = true,
 				desc = "[F]ind [H]elp",
