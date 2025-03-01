@@ -50,7 +50,7 @@ return {
 			cmp.setup({
 				snippet = {
 					expand = function(args)
-						snip.lsp_expand(args.body) -- For `luasnip` users
+						snip.lsp_expand(args.body)
 					end,
 				},
 				formatting = {
