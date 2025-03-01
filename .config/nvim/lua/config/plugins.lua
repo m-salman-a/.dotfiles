@@ -33,11 +33,6 @@ local plugins = {
 		event = "InsertEnter",
 		opts = {},
 	},
-
-	{
-		"numToStr/Comment.nvim",
-		opts = {},
-	},
 }
 
 require("lazy").setup(plugins, {

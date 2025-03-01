@@ -30,12 +30,20 @@ return {
 		config = function()
 			vim.keymap.set("n", "[c", function()
 				require("treesitter-context").go_to_context(vim.v.count1)
-			end, { silent = true })
+			end, { noremap = true, silent = true })
 		end,
 	},
 
 	{
 		"windwp/nvim-ts-autotag",
 		opts = {},
+	},
+
+	{
+		"JoosepAlviste/nvim-ts-context-commentstring",
+		enable = false,
+		opts = {
+			enable_autocmd = false,
+		},
 	},
 }
