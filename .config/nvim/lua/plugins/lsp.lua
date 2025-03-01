@@ -51,16 +51,6 @@ local on_attach = function(_, bufnr)
 		end
 	end, "[F]ind [S]ymbols")
 
-	-- Format
-	nmap("<Leader>fm", function()
-		local has_conform, conform = pcall(require, "conform")
-		if has_conform then
-			conform.format()
-		else
-			vim.lsp.buf.format()
-		end
-	end)
-
 	-- Less used
 	nmap("gD", vim.lsp.buf.declaration, "[G]oto [Declaration]")
 	nmap("<Leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")

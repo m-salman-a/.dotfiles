@@ -28,16 +28,12 @@ local plugins = {
 		opts = {},
 	},
 
-	-- Formatter
-	{
-		"stevearc/conform.nvim",
-	},
-
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		opts = {},
 	},
+
 	{
 		"numToStr/Comment.nvim",
 		opts = {},
