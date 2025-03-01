@@ -73,27 +73,6 @@ local plugins = {
 		opts = {},
 	},
 
-	-- Completions
-	{
-		"L3MON4D3/LuaSnip",
-		-- follow latest release.
-		version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-		-- install jsregexp (optional!).
-		build = "make install_jsregexp",
-	},
-	{
-		"hrsh7th/nvim-cmp",
-		dependencies = {
-			"L3MON4D3/LuaSnip",
-			"saadparwaiz1/cmp_luasnip",
-			"hrsh7th/cmp-nvim-lsp",
-		},
-	},
-	{
-		"r5n-labs/vscode-react-javascript-snippets",
-		build = "yarn install --frozen-lockfile && yarn compile",
-	},
-
 	-- Formatter
 	{
 		"stevearc/conform.nvim",
