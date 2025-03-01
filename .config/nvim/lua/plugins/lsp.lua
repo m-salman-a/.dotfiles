@@ -3,7 +3,7 @@ local servers = { "lua_ls", "ts_ls", "jsonls" }
 local on_attach = function(_, buffer)
 	local has_telescope, telescope_builtin = pcall(require, "telescope.builtin")
 	local keymaps = {
-		{ "gd", vim.lsp.buf.definition, desc = "[G]et [D]efinition" },
+		{ "gd", "<C-]>", desc = "[G]et [D]efinition", remap = true },
 		{ "gD", vim.lsp.buf.declaration, desc = "[G]et [D]eclaration" },
 		{ "gy", vim.lsp.buf.type_definition, desc = "[G]et T[y]pe Definition" },
 		{

@@ -30,7 +30,7 @@ return {
 		config = function()
 			vim.keymap.set("n", "[c", function()
 				require("treesitter-context").go_to_context(vim.v.count1)
-			end, { noremap = true, silent = true })
+			end, { silent = true })
 		end,
 	},
 
