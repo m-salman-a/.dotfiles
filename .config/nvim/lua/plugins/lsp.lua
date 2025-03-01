@@ -1,62 +1,69 @@
 local servers = { "lua_ls", "ts_ls", "jsonls" }
 
-local on_attach = function(_, _)
+local on_attach = function(_, buffer)
 	local has_telescope, telescope_builtin = pcall(require, "telescope.builtin")
+	local opts = { noremap = true, silent = true, buffer = buffer }
 
 	-- For other defaults use:
 	-- :help lsp-defaults
 
 	vim.keymap.set("n", "gd", "<C-]>")
-	vim.keymap.set("n", "gri", function()
+	vim.keymap.set("n", "gI", function()
 		if has_telescope then
 			telescope_builtin.lsp_implementations()
 		else
 			vim.lsp.buf.implementation()
 		end
-	end, {
-		noremap = true,
-	})
-	vim.keymap.set("n", "grr", function()
+	end, opts)
+	vim.keymap.set("n", "gr", function()
 		if has_telescope then
 			telescope_builtin.lsp_references()
 		else
 			vim.lsp.buf.references()
 		end
-	end, {
-		noremap = true,
-	})
-	vim.keymap.set("n", "gO", function()
+	end, opts)
+	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+	vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, opts)
+	vim.keymap.set("n", "<leader>fs", function()
 		if has_telescope then
 			telescope_builtin.lsp_document_symbols()
 		else
 			vim.lsp.buf.document_symbol()
 		end
-	end, {
-		noremap = true,
-	})
+	end, opts)
+	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 end
 
 return {
+	{
+		"williamboman/mason.nvim",
+		opts = {
+			ui = {
+				border = "rounded",
+			},
+		},
+	},
+
+	{
+		"williamboman/mason-lspconfig.nvim",
+		dependencies = {
+			"williamboman/mason.nvim",
+		},
+		opts = {
+			ensure_installed = servers,
+		},
+	},
+
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
-			"hrsh7th/cmp-nvim-lsp",
 		},
 		config = function()
 			local lspconfig = require("lspconfig")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-			require("mason").setup({
-				ui = {
-					border = "rounded",
-				},
-			})
-
-			require("mason-lspconfig").setup({
-				ensure_installed = servers,
-			})
 
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,

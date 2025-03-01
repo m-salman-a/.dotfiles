@@ -41,7 +41,6 @@ return {
 
 	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
-		enable = false,
 		opts = {
 			enable_autocmd = false,
 		},
