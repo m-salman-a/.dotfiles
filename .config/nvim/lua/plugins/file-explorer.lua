@@ -34,6 +34,7 @@ return {
 
 			vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", {
 				desc = "File [E]xplorer",
+				silent = true,
 			})
 		end,
 	},

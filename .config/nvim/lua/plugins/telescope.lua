@@ -49,18 +49,23 @@ return {
 
 			vim.keymap.set("n", "<leader>ff", builtin.find_files, {
 				desc = "[F]ind [F]iles",
+				silent = true,
 			})
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, {
 				desc = "[F]ind by [G]rep",
+				silent = true,
 			})
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, {
 				desc = "[F]ind [B]uffers",
+				silent = true,
 			})
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags, {
 				desc = "[F]ind [H]elp",
+				silent = true,
 			})
 			vim.keymap.set("n", "<leader>fd", builtin.diagnostics, {
 				desc = "[F]ind [D]iagnostics",
+				silent = true,
 			})
 		end,
 	},
