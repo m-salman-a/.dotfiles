@@ -24,10 +24,6 @@ vim.keymap.set("x", "<M-Down>", ":m'>+<CR>gv=gv", opts)
 
 vim.keymap.set("n", "<Leader>e", ":NvimTreeToggle<CR>", opts)
 
-vim.keymap.set("n", "<Leader>ff", ":Telescope find_files <CR>", opts)
-vim.keymap.set("n", "<Leader>fg", ":Telescope live_grep <CR>", opts)
-vim.keymap.set("n", "<Leader>fb", ":Telescope buffers initial_mode=normal<CR>", opts)
-
 vim.keymap.set("n", "[c", function()
 	require("treesitter-context").go_to_context(vim.v.count1)
 end, { silent = true })
