@@ -17,6 +17,9 @@ local plugins = {
 		"catppuccin/nvim",
 		name = "catppuccin",
 		priority = 1000,
+		config = function()
+			vim.cmd([[colorscheme catppuccin-frappe]])
+		end,
 	},
 
 	{
@@ -118,6 +121,8 @@ local plugins = {
 		"numToStr/Comment.nvim",
 		opts = {},
 	},
+
+	{ import = "plugins" },
 }
 
 require("lazy").setup(plugins, {
