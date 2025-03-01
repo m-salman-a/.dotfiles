@@ -1,53 +1,39 @@
 local servers = { "lua_ls", "ts_ls", "jsonls" }
 
-local on_attach = function(_, bufnr)
-	local nmap = function(keys, func, desc)
-		if desc then
-			desc = "LSP: " .. desc
-		end
+local on_attach = function(_, _)
+	local has_telescope, telescope_builtin = pcall(require, "telescope.builtin")
 
-		vim.keymap.set("n", keys, func, { noremap = true, silent = true, buffer = bufnr, desc = desc })
-	end
+	-- For other defaults use:
+	-- :help lsp-defaults
 
-	nmap("<Leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
-	nmap("<Leader>rn", vim.lsp.buf.rename, "[R]e[n]ame)")
-
-	-- Diagnostics
-	nmap("]d", function()
-		vim.diagnostic.goto_next({ buffer = 0 })
-	end, "Go to next [d]iagnostic message")
-	nmap("[d", function()
-		vim.diagnostic.goto_prev({ buffer = 0 })
-	end, "Go to previous [d]iagnostic message")
-	nmap("gl", vim.diagnostic.open_float, "Open [D]iagnostic [F]loating message")
-
-	-- Signature
-	nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-	nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
-
-	-- Goto
-	nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
-	nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
-	nmap("gr", function()
-		local has_telescope = pcall(require, "telescope")
+	vim.keymap.set("n", "gd", "<C-]>")
+	vim.keymap.set("n", "gri", function()
 		if has_telescope then
-			require("telescope.builtin").lsp_references({ initial_mode = "normal" })
+			telescope_builtin.lsp_implementations()
+		else
+			vim.lsp.buf.implementation()
+		end
+	end, {
+		noremap = true,
+	})
+	vim.keymap.set("n", "grr", function()
+		if has_telescope then
+			telescope_builtin.lsp_references()
 		else
 			vim.lsp.buf.references()
 		end
-	end, "[G]oto [R]eferences")
-	nmap("<Leader>fs", function()
-		local has_telescope = pcall(require, "telescope")
+	end, {
+		noremap = true,
+	})
+	vim.keymap.set("n", "gO", function()
 		if has_telescope then
-			require("telescope.builtin").lsp_document_symbols()
+			telescope_builtin.lsp_document_symbols()
 		else
 			vim.lsp.buf.document_symbol()
 		end
-	end, "[F]ind [S]ymbols")
-
-	-- Less used
-	nmap("gD", vim.lsp.buf.declaration, "[G]oto [Declaration]")
-	nmap("<Leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
+	end, {
+		noremap = true,
+	})
 end
 
 return {
@@ -83,8 +69,6 @@ return {
 
 					client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
 						runtime = {
-							-- Tell the language server which version of Lua you're using
-							-- (most likely LuaJIT in the case of Neovim)
 							version = "LuaJIT",
 						},
 						-- Make the server aware of Neovim runtime files

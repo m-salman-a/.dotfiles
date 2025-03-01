@@ -32,7 +32,10 @@ return {
 				vim.cmd("edit " .. file.fname)
 			end)
 
-			vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
+			vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", {
+				noremap = true,
+				desc = "File [E]xplorer",
+			})
 		end,
 	},
 }

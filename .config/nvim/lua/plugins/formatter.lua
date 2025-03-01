@@ -18,7 +18,10 @@ return {
 				},
 			})
 
-			vim.keymap.set("n", "<leader>fm", conform.format)
+			vim.keymap.set("n", "<leader>fm", conform.format, {
+				noremap = true,
+				desc = "[F]or[m]at",
+			})
 		end,
 	},
 }
