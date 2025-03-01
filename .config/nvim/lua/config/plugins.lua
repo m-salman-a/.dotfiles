@@ -12,7 +12,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-	-- Colorschemes
+	{ import = "plugins" },
+
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
@@ -20,18 +21,6 @@ local plugins = {
 		config = function()
 			vim.cmd([[colorscheme catppuccin-frappe]])
 		end,
-	},
-
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-	},
-	{
-		"nvim-treesitter/nvim-treesitter-context",
-	},
-	{
-		"windwp/nvim-ts-autotag",
-		opts = {},
 	},
 
 	{
@@ -88,8 +77,6 @@ local plugins = {
 		"numToStr/Comment.nvim",
 		opts = {},
 	},
-
-	{ import = "plugins" },
 }
 
 require("lazy").setup(plugins, {
