@@ -24,32 +24,6 @@ local plugins = {
 	},
 
 	{
-		"antosha417/nvim-lsp-file-operations",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-tree/nvim-tree.lua",
-		},
-	},
-
-	-- LSP
-	{
-		"neovim/nvim-lspconfig",
-	},
-	{
-		"williamboman/mason.nvim",
-	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-	},
-	{
-		"akinsho/flutter-tools.nvim",
-		lazy = false,
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-	},
-
-	{
 		"lewis6991/gitsigns.nvim",
 		opts = {},
 	},
@@ -59,7 +33,6 @@ local plugins = {
 		"stevearc/conform.nvim",
 	},
 
-	-- Utils
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
