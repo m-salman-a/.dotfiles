@@ -12,6 +12,7 @@ return {
 		config = function()
 			local telescope = require("telescope")
 			local actions = require("telescope.actions")
+			local builtin = require("telescope.builtin")
 
 			telescope.setup({
 				defaults = {
@@ -23,11 +24,15 @@ return {
 				},
 				pickers = {
 					buffers = {
+						initial_mode = "normal",
 						mappings = {
 							n = {
 								["d"] = actions.delete_buffer + actions.move_to_top,
 							},
 						},
+					},
+					diagnostics = {
+						initial_mode = "normal",
 					},
 				},
 				extensions = {
@@ -37,9 +42,18 @@ return {
 
 			telescope.load_extension("fzf")
 
-			vim.keymap.set("n", "<leader>ff", ":Telescope find_files <CR>")
-			vim.keymap.set("n", "<leader>fg", ":Telescope live_grep <CR>")
-			vim.keymap.set("n", "<leader>fb", ":Telescope buffers initial_mode=normal<CR>")
+			vim.keymap.set("n", "<leader>ff", builtin.find_files, {
+				desc = "[F]ind [F]iles",
+			})
+			vim.keymap.set("n", "<leader>fg", builtin.live_grep, {
+				desc = "[F]ind by [G]rep",
+			})
+			vim.keymap.set("n", "<leader>fh", builtin.help_tags, {
+				desc = "[F]ind [H]elp",
+			})
+			vim.keymap.set("n", "<leader>fd", builtin.diagnostics, {
+				desc = "[F]ind [D]iagnostics",
+			})
 		end,
 	},
 }

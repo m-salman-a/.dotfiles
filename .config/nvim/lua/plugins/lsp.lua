@@ -20,12 +20,6 @@ local on_attach = function(_, bufnr)
 		vim.diagnostic.goto_prev({ buffer = 0 })
 	end, "Go to previous [d]iagnostic message")
 	nmap("gl", vim.diagnostic.open_float, "Open [D]iagnostic [F]loating message")
-	nmap("<Leader>fd", function()
-		local has_telescope = pcall(require, "telescope")
-		if has_telescope then
-			require("telescope.builtin").diagnostics({ initial_mode = "normal" })
-		end
-	end, "[F]ind [D]iagnostics")
 
 	-- Signature
 	nmap("K", vim.lsp.buf.hover, "Hover Documentation")
