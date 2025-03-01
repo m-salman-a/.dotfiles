@@ -10,6 +10,21 @@ M.on_attach = function(client, buffer)
 		{ "gy", telescope_builtin.lsp_type_definitions, desc = "[G]et T[y]pe Definition" },
 		{ "gI", telescope_builtin.lsp_implementations, desc = "[G]et [I]mplementations" },
 		{ "gr", telescope_builtin.lsp_references, desc = "[G]et [R]eferences" },
+		{
+			"]d",
+			function()
+				vim.diagnostic.jump({ count = 1, float = true })
+			end,
+			desc = "[D]iagnostics Next",
+		},
+		{
+			"[d",
+			function()
+				vim.diagnostic.jump({ count = -1, float = true })
+			end,
+			desc = "[D]iagnostics Previous",
+		},
+		{ "<leader>d", vim.diagnostic.open_float, desc = "[D]iagnostic Float" },
 		{ "<leader>fs", telescope_builtin.lsp_document_symbols, desc = "[F]ind [S]ymbols" },
 		{ "<leader>ca", vim.lsp.buf.code_action, desc = "[C]ode [A]ction" },
 		{ "<leader>rn", vim.lsp.buf.rename, desc = "[R]e[n]ame" },
@@ -21,6 +36,7 @@ M.on_attach = function(client, buffer)
 		keys[1] = nil
 		keys[2] = nil
 		keys.buffer = buffer
+		keys.silent = true
 		vim.keymap.set("n", lhs, rhs, keys)
 	end
 end

@@ -15,6 +15,3 @@ vim.keymap.set("n", "<M-Up>", ":m-2<CR>==", opts)
 vim.keymap.set("n", "<M-Down>", ":m+<CR>==", opts)
 vim.keymap.set("x", "<M-Up>", ":m-2<CR>gv=gv", opts)
 vim.keymap.set("x", "<M-Down>", ":m'>+<CR>gv=gv", opts)
-
--- Open diagnostics float
-vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "[D]iagnostic Float" })
