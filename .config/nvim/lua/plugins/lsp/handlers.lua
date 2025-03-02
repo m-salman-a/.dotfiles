@@ -1,7 +1,6 @@
 local M = {}
-local _registered_buffers = {}
 
-local setup_keymaps = function(buffer)
+local function setup_keymaps(buffer)
 	local telescope_builtin = require("telescope.builtin")
 
 	-- For other lsp default keymaps use:
@@ -41,19 +40,49 @@ local setup_keymaps = function(buffer)
 	end
 end
 
-local populate_workspace_diagnostics = function(client, buffer)
+-- The workspace-diagnostics plugin ignores the current buffer when populating workspace diagnostics.
+-- So, I created a callback that repopulates workspace diagnostics from the current buffer after it closes.
+local function populate_workspace_diagnostics_on_buffer_close(client, buffer)
+	vim.api.nvim_create_autocmd("BufDelete", {
+		buffer = buffer,
+		once = true,
+		callback = function()
+			local path = vim.api.nvim_buf_get_name(buffer)
+
+			vim.defer_fn(function()
+				local filetype = vim.filetype.match({ filename = path })
+
+				-- weird TypeScript bug for vim.filetype.match
+				-- see: https://github.com/neovim/neovim/issues/27265
+				if not filetype then
+					local base_name = vim.fs.basename(path)
+					local split_name = vim.split(base_name, "%.")
+					if #split_name > 1 then
+						local ext = split_name[#split_name]
+						if ext == "ts" then
+							filetype = "typescript"
+						end
+					end
+				end
+
+				local params = {
+					textDocument = {
+						uri = vim.uri_from_fname(path),
+						version = 0,
+						text = vim.fn.join(vim.fn.readfile(path), "\n"),
+						languageId = filetype,
+					},
+				}
+
+				client.notify("textDocument/didOpen", params)
+			end, 0)
+		end,
+	})
+end
+
+local function populate_workspace_diagnostics(client, buffer)
 	require("workspace-diagnostics").populate_workspace_diagnostics(client, buffer)
-
-	if _registered_buffers[buffer] == nil then
-		vim.api.nvim_create_autocmd("BufEnter", {
-			buffer = buffer,
-			callback = function()
-				require("workspace-diagnostics").populate_workspace_diagnostics(client, buffer)
-			end,
-		})
-
-		table.insert(_registered_buffers, buffer)
-	end
+	populate_workspace_diagnostics_on_buffer_close(client, buffer)
 end
 
 M.on_attach = function(client, buffer)
