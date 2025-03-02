@@ -66,7 +66,7 @@ return {
 						enabled = true,
 						virtual_text = true,
 					},
-					cmd = { "dart", "language-server", "--protocol=lsp" },
+					cmd = { "fvm", "dart", "language-server", "--protocol=lsp" },
 					on_attach = handlers.on_attach,
 					capabilities = capabilities,
 					settings = {
