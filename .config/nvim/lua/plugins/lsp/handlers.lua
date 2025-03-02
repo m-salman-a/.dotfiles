@@ -36,7 +36,6 @@ M.on_attach = function(client, buffer)
 		keys[1] = nil
 		keys[2] = nil
 		keys.buffer = buffer
-		keys.silent = true
 		vim.keymap.set("n", lhs, rhs, keys)
 	end
 end

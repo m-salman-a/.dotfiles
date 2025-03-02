@@ -20,7 +20,6 @@ return {
 
 			vim.keymap.set("n", "<leader>fm", conform.format, {
 				desc = "[F]or[m]at",
-				silent = true,
 			})
 		end,
 	},
