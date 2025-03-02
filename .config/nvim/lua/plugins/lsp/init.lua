@@ -32,10 +32,10 @@ return {
 				local handlers = require("plugins.lsp.handlers")
 				local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-				require("lspconfig")[server].setup(vim.tbl_deep_extend("force", handlers[server] or {}, {
+				require("lspconfig")[server].setup(vim.tbl_deep_extend("force", {
 					capabilities = capabilities,
 					on_attach = handlers.on_attach,
-				}))
+				}, handlers[server] or {}))
 			end
 		end,
 	},
