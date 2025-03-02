@@ -19,22 +19,22 @@ return {
 				},
 			})
 
+			local api = require("nvim-tree.api")
+
 			-- Automatically close
 			vim.api.nvim_create_autocmd({ "QuitPre" }, {
 				callback = function()
-					vim.cmd("NvimTreeClose")
+					api.tree.close()
 				end,
 			})
 
 			-- Automatically open file upon creation
-			local api = require("nvim-tree.api")
 			api.events.subscribe(api.events.Event.FileCreated, function(file)
 				vim.cmd("edit " .. file.fname)
 			end)
 
-			vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", {
+			vim.keymap.set("n", "<leader>e", api.tree.toggle, {
 				desc = "File [E]xplorer",
-				silent = true,
 			})
 		end,
 	},
