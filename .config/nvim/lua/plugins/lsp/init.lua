@@ -86,4 +86,10 @@ return {
 			})
 		end,
 	},
+
+	{
+		"artemave/workspace-diagnostics.nvim",
+		opts = {},
+		dev = true,
+	},
 }

@@ -1,6 +1,7 @@
 local M = {}
+local _registered_buffers = {}
 
-M.on_attach = function(client, buffer)
+local setup_keymaps = function(buffer)
 	local telescope_builtin = require("telescope.builtin")
 
 	-- For other lsp default keymaps use:
@@ -38,6 +39,26 @@ M.on_attach = function(client, buffer)
 		keys.buffer = buffer
 		vim.keymap.set("n", lhs, rhs, keys)
 	end
+end
+
+local populate_workspace_diagnostics = function(client, buffer)
+	require("workspace-diagnostics").populate_workspace_diagnostics(client, buffer)
+
+	if _registered_buffers[buffer] == nil then
+		vim.api.nvim_create_autocmd("BufEnter", {
+			buffer = buffer,
+			callback = function()
+				require("workspace-diagnostics").populate_workspace_diagnostics(client, buffer)
+			end,
+		})
+
+		table.insert(_registered_buffers, buffer)
+	end
+end
+
+M.on_attach = function(client, buffer)
+	setup_keymaps(buffer)
+	populate_workspace_diagnostics(client, buffer)
 end
 
 M.lua_ls = {
