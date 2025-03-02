@@ -40,41 +40,25 @@ local function setup_keymaps(buffer)
 	end
 end
 
--- The workspace-diagnostics plugin ignores the current buffer when populating workspace diagnostics.
--- So, I created a callback that repopulates workspace diagnostics from the current buffer after it closes.
+-- This is needed because closing a buffer removes all of its diagnostics from the diagnostics list.
 local function populate_workspace_diagnostics_on_buffer_close(client, buffer)
-	vim.api.nvim_create_autocmd("BufDelete", {
+	vim.api.nvim_create_autocmd("BufUnload", {
 		buffer = buffer,
 		once = true,
 		callback = function()
 			local path = vim.api.nvim_buf_get_name(buffer)
+			local filetype = vim.filetype.match({ buf = buffer })
+			local text = vim.fn.join(vim.api.nvim_buf_get_lines(buffer, 0, -1, false), "\n")
 
 			vim.defer_fn(function()
-				local filetype = vim.filetype.match({ filename = path })
-
-				-- weird TypeScript bug for vim.filetype.match
-				-- see: https://github.com/neovim/neovim/issues/27265
-				if not filetype then
-					local base_name = vim.fs.basename(path)
-					local split_name = vim.split(base_name, "%.")
-					if #split_name > 1 then
-						local ext = split_name[#split_name]
-						if ext == "ts" then
-							filetype = "typescript"
-						end
-					end
-				end
-
-				local params = {
+				client.notify(vim.lsp.protocol.Methods.textDocument_didOpen, {
 					textDocument = {
 						uri = vim.uri_from_fname(path),
 						version = 0,
-						text = vim.fn.join(vim.fn.readfile(path), "\n"),
+						text = text,
 						languageId = filetype,
 					},
-				}
-
-				client.notify("textDocument/didOpen", params)
+				})
 			end, 0)
 		end,
 	})
