@@ -28,10 +28,10 @@ return {
 			"williamboman/mason-lspconfig.nvim",
 		},
 		config = function()
-			for _, server in ipairs(servers) do
-				local handlers = require("plugins.lsp.handlers")
-				local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local handlers = require("plugins.lsp.handlers")
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+			for _, server in ipairs(servers) do
 				require("lspconfig")[server].setup(vim.tbl_deep_extend("force", {
 					capabilities = capabilities,
 					on_attach = handlers.on_attach,
