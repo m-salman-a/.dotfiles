@@ -89,5 +89,14 @@ return {
 
 	{
 		"artemave/workspace-diagnostics.nvim",
+		config = function()
+			-- Fixes this bug
+			-- https://github.com/artemave/workspace-diagnostics.nvim/issues/1
+			vim.filetype.add({
+				extension = {
+					ts = "typescript",
+				},
+			})
+		end,
 	},
 }
