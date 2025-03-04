@@ -29,6 +29,9 @@ local cmp_kinds = {
 return {
 	{
 		"L3MON4D3/LuaSnip",
+		dependencies = {
+			"r5n-labs/vscode-react-javascript-snippets",
+		},
 		version = "v2.*",
 		build = "make install_jsregexp",
 		config = function()
