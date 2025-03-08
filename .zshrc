@@ -25,6 +25,8 @@ export PATH="$HOME/.shorebird/bin:$PATH"
 
 export FVM_CACHE_PATH="$HOME/.fvm"
 
+export COREPACK_ENABLE_AUTO_PIN=0
+
 # history
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
