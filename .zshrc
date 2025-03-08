@@ -15,10 +15,8 @@ export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH="$PATH:$ANDROID_HOME/emulator"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
-# export dart for global packages
+# dart
 export PATH="$PATH":"$FVM_CACHE_PATH/default/bin/cache/dart-sdk/bin"
-
-# export global dart packages
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 export PATH="$HOME/.shorebird/bin:$PATH"
