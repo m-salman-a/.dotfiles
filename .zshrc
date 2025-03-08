@@ -15,8 +15,6 @@ export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH="$PATH:$ANDROID_HOME/emulator"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
-export FVM_CACHE_PATH="$HOME/.fvm"
-
 # export dart for global packages
 export PATH="$PATH":"$FVM_CACHE_PATH/default/bin/cache/dart-sdk/bin"
 
@@ -24,6 +22,21 @@ export PATH="$PATH":"$FVM_CACHE_PATH/default/bin/cache/dart-sdk/bin"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 export PATH="$HOME/.shorebird/bin:$PATH"
+
+export FVM_CACHE_PATH="$HOME/.fvm"
+
+# history
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
 
 # zsh-completions
 if type brew &>/dev/null; then
