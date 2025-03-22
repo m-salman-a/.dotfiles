@@ -1,4 +1,4 @@
-local servers = { "lua_ls", "ts_ls", "jsonls" }
+local servers = { "lua_ls", "ts_ls", "eslint", "jsonls" }
 
 return {
 	{
@@ -89,6 +89,7 @@ return {
 
 	{
 		"artemave/workspace-diagnostics.nvim",
+		enabled = false,
 		config = function()
 			-- Fixes this bug
 			-- https://github.com/artemave/workspace-diagnostics.nvim/issues/1
