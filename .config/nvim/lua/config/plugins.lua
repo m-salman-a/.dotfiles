@@ -33,6 +33,8 @@ local plugins = {
 		event = "InsertEnter",
 		opts = {},
 	},
+
+	{ "echasnovski/mini.surround", version = false, opts = {} },
 }
 
 require("lazy").setup(plugins, {
