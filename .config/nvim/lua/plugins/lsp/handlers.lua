@@ -40,39 +40,35 @@ local function setup_keymaps(buffer)
 	end
 end
 
--- This is needed because closing a buffer removes all of its diagnostics from the diagnostics list.
-local function populate_workspace_diagnostics_on_buffer_close(client, buffer)
-	vim.api.nvim_create_autocmd("BufUnload", {
-		buffer = buffer,
-		once = true,
-		callback = function()
-			local path = vim.api.nvim_buf_get_name(buffer)
-			local filetype = vim.filetype.match({ buf = buffer })
-			local text = vim.fn.join(vim.api.nvim_buf_get_lines(buffer, 0, -1, false), "\n")
+local function ts_sort_imports(client, buffer)
+	local path = vim.api.nvim_buf_get_name(buffer)
 
-			vim.defer_fn(function()
-				client.notify(vim.lsp.protocol.Methods.textDocument_didOpen, {
-					textDocument = {
-						uri = vim.uri_from_fname(path),
-						version = 0,
-						text = text,
-						languageId = filetype,
-					},
-				})
-			end, 0)
-		end,
+	local ok = client.request("workspace/executeCommand", {
+		command = "_typescript.organizeImports",
+		arguments = { path },
 	})
+	if ok then
+		vim.cmd([[:w]])
+	end
 end
 
-local function populate_workspace_diagnostics(client, buffer)
-	require("workspace-diagnostics").populate_workspace_diagnostics(client, buffer)
-	populate_workspace_diagnostics_on_buffer_close(client, buffer)
-end
-
-M.on_attach = function(client, buffer)
+function M.on_attach(client, buffer)
 	setup_keymaps(buffer)
-	populate_workspace_diagnostics(client, buffer)
 end
+
+M.ts_ls = {
+	on_attach = function(client, buffer)
+		M.on_attach(client, buffer)
+
+		-- sort imports
+		vim.keymap.set("n", "<leader>si", function()
+			ts_sort_imports(client, buffer)
+		end, {
+			buffer = buffer,
+			desc = "[S]ort [I]mports",
+		})
+	end,
+}
 
 M.lua_ls = {
 	on_init = function(client)
