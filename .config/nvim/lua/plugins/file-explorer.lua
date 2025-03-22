@@ -36,6 +36,9 @@ return {
 			vim.keymap.set("n", "<leader>e", api.tree.toggle, {
 				desc = "File [E]xplorer",
 			})
+			vim.keymap.set("n", "zM", api.tree.collapse_all, {
+				desc = "Fold All",
+			})
 		end,
 	},
 }
