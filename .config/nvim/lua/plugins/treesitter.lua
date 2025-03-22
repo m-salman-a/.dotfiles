@@ -30,7 +30,11 @@ return {
 		config = function()
 			vim.keymap.set("n", "[c", function()
 				require("treesitter-context").go_to_context(vim.v.count1)
-			end, { silent = true })
+			end, { silent = true, desc = "Goto [C]ontext" })
+
+			vim.keymap.set("n", "<leader>tc", "<cmd>TSContextToggle<CR>", {
+				desc = "[T]reesitter [C]ontext",
+			})
 		end,
 	},
 
