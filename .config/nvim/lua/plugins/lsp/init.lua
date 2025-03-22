@@ -1,4 +1,4 @@
-local servers = { "lua_ls", "ts_ls", "eslint", "jsonls" }
+local servers = { "lua_ls", "eslint", "jsonls" }
 
 return {
 	{
@@ -83,6 +83,26 @@ return {
 				closing_tags = {
 					enabled = false,
 				},
+			})
+		end,
+	},
+
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		config = function()
+			local handlers = require("plugins.lsp.handlers")
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+			require("typescript-tools").setup({
+				on_attach = function(client, buffer)
+					handlers.on_attach(client, buffer)
+					vim.keymap.set("n", "<leader>si", "<cmd>TSToolsOrganizeImports<CR>", {
+						buffer = buffer,
+						desc = "[S]ort [I]mports",
+					})
+				end,
+				capabilities = capabilities,
 			})
 		end,
 	},
