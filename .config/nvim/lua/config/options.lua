@@ -34,3 +34,5 @@ vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.o.foldenable = false
 
 vim.o.ch = 0
+
+vim.diagnostic.config({ virtual_text = true })

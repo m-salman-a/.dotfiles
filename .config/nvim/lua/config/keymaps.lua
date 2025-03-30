@@ -1,4 +1,4 @@
-local opts = { silent = true }
+local opts = { silent = true, noremap = true }
 
 -- Resize
 vim.keymap.set("n", "<M-h>", ":vertical resize -2<CR>", opts)
