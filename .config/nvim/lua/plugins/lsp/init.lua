@@ -1,4 +1,4 @@
-local servers = { "lua_ls", "eslint", "jsonls" }
+local servers = { "lua_ls", "ts_ls", "eslint", "jsonls" }
 
 return {
 	{
@@ -89,6 +89,7 @@ return {
 
 	{
 		"pmizio/typescript-tools.nvim",
+		enabled = false,
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 		config = function()
 			local handlers = require("plugins.lsp.handlers")

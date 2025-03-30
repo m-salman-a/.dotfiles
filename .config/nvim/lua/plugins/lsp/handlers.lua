@@ -28,6 +28,13 @@ local function setup_keymaps(buffer)
 		{ "<leader>fs", telescope_builtin.lsp_document_symbols, desc = "[F]ind [S]ymbols" },
 		{ "<leader>ca", vim.lsp.buf.code_action, desc = "[C]ode [A]ction" },
 		{ "<leader>rn", vim.lsp.buf.rename, desc = "[R]e[n]ame" },
+		{
+			"<leader>h",
+			function()
+				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+			end,
+			desc = "Inlay [H]int",
+		},
 	}
 
 	for _, keys in ipairs(keymaps) do
@@ -81,6 +88,32 @@ M.ts_ls = {
 			desc = "[S]ort [I]mports",
 		})
 	end,
+	settings = {
+		typescript = {
+			inlayHints = {
+				includeInlayParameterNameHints = "all",
+				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayVariableTypeHints = true,
+				includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+				includeInlayPropertyDeclarationTypeHints = true,
+				includeInlayFunctionLikeReturnTypeHints = true,
+				includeInlayEnumMemberValueHints = true,
+			},
+		},
+		javascript = {
+			inlayHints = {
+				includeInlayParameterNameHints = "all",
+				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayVariableTypeHints = true,
+				includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+				includeInlayPropertyDeclarationTypeHints = true,
+				includeInlayFunctionLikeReturnTypeHints = true,
+				includeInlayEnumMemberValueHints = true,
+			},
+		},
+	},
 }
 
 M.lua_ls = {
