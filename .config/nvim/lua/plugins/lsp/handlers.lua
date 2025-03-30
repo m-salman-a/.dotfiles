@@ -56,6 +56,19 @@ function M.on_attach(client, buffer)
 	setup_keymaps(buffer)
 end
 
+M.eslint = {
+	settings = {
+		codeAction = {
+			disableRuleComment = {
+				enable = false,
+			},
+			showDocumentation = {
+				enable = false,
+			},
+		},
+	},
+}
+
 M.ts_ls = {
 	on_attach = function(client, buffer)
 		M.on_attach(client, buffer)
