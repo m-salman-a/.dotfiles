@@ -1,4 +1,4 @@
-local servers = { "lua_ls", "ts_ls", "eslint", "jsonls" }
+local servers = { "lua_ls", "ts_ls", "jsonls" }
 
 return {
 	{
@@ -117,6 +117,21 @@ return {
 			vim.filetype.add({
 				extension = {
 					ts = "typescript",
+				},
+			})
+		end,
+	},
+
+	{
+		"nvimtools/none-ls.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvimtools/none-ls-extras.nvim",
+		},
+		config = function()
+			require("null-ls").setup({
+				sources = {
+					require("none-ls.diagnostics.eslint_d"),
 				},
 			})
 		end,
