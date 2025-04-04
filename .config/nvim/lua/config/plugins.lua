@@ -35,6 +35,12 @@ local plugins = {
 	},
 
 	{ "echasnovski/mini.surround", version = false, opts = {} },
+
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {},
+	},
 }
 
 require("lazy").setup(plugins, {
