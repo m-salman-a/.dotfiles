@@ -4,9 +4,7 @@ return {
 	{
 		"williamboman/mason.nvim",
 		opts = {
-			ui = {
-				border = "rounded",
-			},
+			ui = { border = "rounded" },
 		},
 	},
 
@@ -26,6 +24,20 @@ return {
 			-- These need to be loaded first.
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
+			"hrsh7th/cmp-nvim-lsp",
+			{
+				"folke/lazydev.nvim",
+				ft = "lua", -- only load on lua files
+				opts = {
+					library = {
+						{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+					},
+					-- disable when a .luarc.json file is found
+					enabled = function(root_dir)
+						return not vim.uv.fs_stat(root_dir .. "/.luarc.json")
+					end,
+				},
+			},
 		},
 		config = function()
 			local handlers = require("plugins.lsp.handlers")

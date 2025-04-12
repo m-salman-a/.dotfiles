@@ -64,6 +64,7 @@ return {
 						vim_item.kind = cmp_kinds[vim_item.kind] or ""
 						return vim_item
 					end,
+					expandable_indicator = true,
 				},
 				mapping = cmp.mapping.preset.insert({
 					-- Safely select entries with <CR>
@@ -100,6 +101,7 @@ return {
 					end, { "i", "s" }),
 				}),
 				sources = cmp.config.sources({
+					{ name = "lazydev" },
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
 					{ name = "path" },
