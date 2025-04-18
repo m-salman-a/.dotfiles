@@ -116,4 +116,14 @@ M.ts_ls = {
 	},
 }
 
+M.lua_ls = {
+	settings = {
+		Lua = {
+			diagnostics = {
+				disable = { "missing-fields" },
+			},
+		},
+	},
+}
+
 return M
