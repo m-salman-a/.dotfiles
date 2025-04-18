@@ -142,6 +142,11 @@ return {
 		---@type oil.SetupOpts
 		opts = {
 			default_file_explorer = false,
+			lsp_file_methods = {
+				enabled = true,
+				timeout_ms = 1000,
+				autosave_changes = false,
+			},
 		},
 		-- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
 		lazy = false,
