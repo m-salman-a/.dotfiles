@@ -127,8 +127,8 @@ return {
 
 	{
 		"saghen/blink.cmp",
-		dependencies = { "L3MON4D3/LuaSnip", "folke/lazydev.nvim" },
 		enabled = false,
+		dependencies = { "L3MON4D3/LuaSnip", "folke/lazydev.nvim" },
 		version = "1.*",
 		config = function()
 			local blink = require("blink-cmp")
