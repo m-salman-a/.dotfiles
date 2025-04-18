@@ -22,6 +22,11 @@ return {
 					},
 				},
 				pickers = {
+					find_files = {
+						layout_config = {
+							preview_cutoff = 1000,
+						},
+					},
 					buffers = {
 						initial_mode = "normal",
 						mappings = {
