@@ -1,4 +1,4 @@
-local servers = { "lua_ls", "ts_ls", "jsonls" }
+local servers = { "lua_ls", "eslint", "ts_ls", "jsonls" }
 
 return {
 	{
@@ -25,19 +25,7 @@ return {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"hrsh7th/cmp-nvim-lsp",
-			{
-				"folke/lazydev.nvim",
-				ft = "lua", -- only load on lua files
-				opts = {
-					library = {
-						{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
-					},
-					-- disable when a .luarc.json file is found
-					enabled = function(root_dir)
-						return not vim.uv.fs_stat(root_dir .. "/.luarc.json")
-					end,
-				},
-			},
+			"folke/lazydev.nvim",
 		},
 		config = function()
 			local handlers = require("plugins.lsp.handlers")
@@ -62,10 +50,25 @@ return {
 	},
 
 	{
+		"folke/lazydev.nvim",
+		ft = "lua", -- only load on lua files
+		opts = {
+			library = {
+				{ path = "${3rd}/luv/library" },
+			},
+			-- disable when a .luarc.json file is found
+			enabled = function(root_dir)
+				return not vim.uv.fs_stat(root_dir .. "/.luarc.json")
+			end,
+		},
+	},
+
+	{
 		"akinsho/flutter-tools.nvim",
 		lazy = false,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
+			"hrsh7th/cmp-nvim-lsp",
 		},
 		config = function()
 			local handlers = require("plugins.lsp.handlers")
@@ -102,7 +105,11 @@ return {
 	{
 		"pmizio/typescript-tools.nvim",
 		enabled = false,
-		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"neovim/nvim-lspconfig",
+			"hrsh7th/cmp-nvim-lsp",
+		},
 		config = function()
 			local handlers = require("plugins.lsp.handlers")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -136,6 +143,7 @@ return {
 
 	{
 		"nvimtools/none-ls.nvim",
+		enabled = false,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvimtools/none-ls-extras.nvim",

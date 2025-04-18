@@ -45,8 +45,10 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
+			"folke/lazydev.nvim",
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -66,7 +68,23 @@ return {
 					end,
 					expandable_indicator = true,
 				},
+				sources = cmp.config.sources({
+					{ name = "lazydev" },
+				}, {
+					{ name = "nvim_lsp" },
+					{ name = "nvim_lsp_signature_help" },
+					{ name = "luasnip" },
+				}, {
+					{ name = "path" },
+					{ name = "buffer" },
+				}),
+				window = {
+					completion = cmp.config.window.bordered(),
+					documentation = cmp.config.window.bordered(),
+				},
 				mapping = cmp.mapping.preset.insert({
+					["<C-x>"] = cmp.mapping.abort(),
+
 					-- Safely select entries with <CR>
 					["<CR>"] = cmp.mapping(function(fallback)
 						if cmp.visible() and cmp.get_active_entry() then
@@ -100,23 +118,86 @@ return {
 						end
 					end, { "i", "s" }),
 				}),
-				sources = cmp.config.sources({
-					{ name = "lazydev" },
-					{ name = "nvim_lsp" },
-					{ name = "luasnip" },
-					{ name = "path" },
-				}),
-				{
-					{ name = "buffer" },
-				},
-				window = {
-					completion = cmp.config.window.bordered(),
-					documentation = cmp.config.window.bordered(),
-				},
 			})
 
 			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+		end,
+	},
+
+	{
+		"saghen/blink.cmp",
+		dependencies = { "L3MON4D3/LuaSnip", "folke/lazydev.nvim" },
+		enabled = false,
+		version = "1.*",
+		config = function()
+			local blink = require("blink-cmp")
+
+			---@module 'blink.cmp'
+			---@type blink.cmp.Config
+			blink.setup({
+				completion = {
+					menu = {
+						draw = {
+							components = {
+								kind_icon = {
+									text = function(ctx)
+										return " " .. cmp_kinds[ctx.kind] or ctx.kind_icon .. ctx.icon_gap .. " "
+									end,
+								},
+							},
+						},
+					},
+				},
+				snippets = { preset = "luasnip" },
+				sources = {
+					default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+					providers = {
+						lazydev = {
+							name = "LazyDev",
+							module = "lazydev.integrations.blink",
+							-- make lazydev completions top priority (see `:h blink.cmp`)
+							score_offset = 100,
+						},
+					},
+				},
+				signature = { enabled = true },
+				keymap = {
+					preset = "super-tab",
+
+					["<Tab>"] = {
+						function(cmp)
+							if cmp.snippet_active() then
+								return cmp.snippet_forward()
+							else
+								return cmp.select_next()
+							end
+						end,
+						"snippet_forward",
+						"fallback",
+					},
+
+					["<S-Tab>"] = {
+						function(cmp)
+							if cmp.snippet_active() then
+								return cmp.snippet_backward()
+							else
+								return cmp.select_prev()
+							end
+						end,
+						"snippet_backward",
+						"fallback",
+					},
+
+					["<CR>"] = { "accept", "fallback" },
+				},
+			})
+
+			vim.keymap.set("i", "<C-n>", function()
+				blink.show()
+			end, {
+				desc = "Show completions",
+			})
 		end,
 	},
 

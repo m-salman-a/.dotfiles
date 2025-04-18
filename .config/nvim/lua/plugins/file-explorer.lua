@@ -17,6 +17,7 @@ return {
 				update_focused_file = {
 					enable = true,
 				},
+				filters = { custom = { "^.git$" } },
 			})
 
 			local api = require("nvim-tree.api")
@@ -35,9 +36,6 @@ return {
 
 			vim.keymap.set("n", "<leader>e", api.tree.toggle, {
 				desc = "File [E]xplorer",
-			})
-			vim.keymap.set("n", "zM", api.tree.collapse_all, {
-				desc = "Fold All",
 			})
 		end,
 	},
