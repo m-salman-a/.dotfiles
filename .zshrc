@@ -23,7 +23,10 @@ export PATH="$HOME/.shorebird/bin:$PATH"
 
 export FVM_CACHE_PATH="$HOME/.fvm"
 
+export FNM_COREPACK_ENABLED=true
+
 export COREPACK_ENABLE_AUTO_PIN=0
+export COREPACK_ENABLE_STRICT=0
 
 # history
 HISTSIZE=5000
