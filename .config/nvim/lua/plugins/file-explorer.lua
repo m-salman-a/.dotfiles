@@ -70,7 +70,7 @@ return {
 				window = {
 					width = 30,
 					mappings = {
-						["C-v"] = "open_vsplit",
+						["<C-v>"] = "open_vsplit",
 					},
 				},
 				filesystem = {
