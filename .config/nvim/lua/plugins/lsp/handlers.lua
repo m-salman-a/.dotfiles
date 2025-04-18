@@ -26,9 +26,9 @@ local function setup_keymaps(buffer)
 			desc = "[D]iagnostics Previous",
 		},
 		{ "<leader>d", vim.diagnostic.open_float, desc = "[D]iagnostic Float" },
-		{ "<leader>fd", telescope_builtin.diagnostics, desc = "[F]ind [D]iagnostics" },
 		{
 			"<leader>fs",
+			-- telescope_builtin.lsp_document_symbols,
 			function()
 				neotree_command.execute({
 					action = "focus",
