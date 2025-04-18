@@ -30,7 +30,7 @@ return {
 		"nvim-treesitter/nvim-treesitter-context",
 		config = function()
 			require("treesitter-context").setup({
-				max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+				max_lines = 2, -- How many lines the window should span. Values <= 0 mean no limit.
 			})
 
 			vim.keymap.set("n", "[c", function()
