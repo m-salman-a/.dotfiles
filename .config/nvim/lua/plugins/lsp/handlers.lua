@@ -2,6 +2,7 @@ local M = {}
 
 local function setup_keymaps(buffer)
 	local telescope_builtin = require("telescope.builtin")
+	local neotree_command = require("neo-tree.command")
 
 	-- For other lsp default keymaps use:
 	-- :help lsp-defaults
@@ -25,7 +26,20 @@ local function setup_keymaps(buffer)
 			desc = "[D]iagnostics Previous",
 		},
 		{ "<leader>d", vim.diagnostic.open_float, desc = "[D]iagnostic Float" },
-		{ "<leader>fs", telescope_builtin.lsp_document_symbols, desc = "[F]ind [S]ymbols" },
+		{ "<leader>fd", telescope_builtin.diagnostics, desc = "[F]ind [D]iagnostics" },
+		{
+			"<leader>fs",
+			function()
+				neotree_command.execute({
+					action = "focus",
+					source = "document_symbols",
+					toggle = true,
+					reveal = true,
+					follow_cursor = true,
+				})
+			end,
+			desc = "[F]ind [S]ymbols",
+		},
 		{ "<leader>ca", vim.lsp.buf.code_action, desc = "[C]ode [A]ction" },
 		{ "<leader>rn", vim.lsp.buf.rename, desc = "[R]e[n]ame" },
 		{
