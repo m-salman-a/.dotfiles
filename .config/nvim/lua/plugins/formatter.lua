@@ -2,7 +2,9 @@ return {
 	{
 		"stevearc/conform.nvim",
 		config = function()
-			require("conform").setup({
+			local conform = require("conform")
+
+			conform.setup({
 				event = { "BufWritePre" },
 				cmd = { "ConformInfo" },
 				formatters_by_ft = {
