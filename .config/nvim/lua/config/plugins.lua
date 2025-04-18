@@ -45,24 +45,6 @@ local plugins = {
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = {},
 	},
-
-	{
-		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {
-			options = {
-				component_separators = { left = "|", right = "|" },
-				section_separators = { left = " ", right = " " },
-			},
-			sections = {
-				lualine_b = { "filename" },
-				lualine_c = { "" },
-				lualine_x = { "" },
-				lualine_y = { "" },
-			},
-			extensions = { "neo-tree" },
-		},
-	},
 }
 
 require("lazy").setup(plugins, {
