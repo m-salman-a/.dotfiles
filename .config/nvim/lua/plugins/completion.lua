@@ -41,7 +41,7 @@ return {
 
 	{
 		"hrsh7th/nvim-cmp",
-		-- enabled = false,
+		enabled = false,
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
@@ -128,7 +128,7 @@ return {
 
 	{
 		"saghen/blink.cmp",
-		enabled = false,
+		-- enabled = false,
 		dependencies = { "L3MON4D3/LuaSnip", "folke/lazydev.nvim" },
 		version = "1.*",
 		config = function()
