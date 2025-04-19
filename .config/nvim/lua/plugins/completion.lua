@@ -39,21 +39,21 @@ return {
     end,
   },
 
-	{
-		"hrsh7th/nvim-cmp",
-		enabled = false,
-		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-nvim-lsp-signature-help",
-			"L3MON4D3/LuaSnip",
-			"saadparwaiz1/cmp_luasnip",
-			"folke/lazydev.nvim",
-		},
-		config = function()
-			local cmp = require("cmp")
-			local snip = require("luasnip")
+  {
+    "hrsh7th/nvim-cmp",
+    enabled = false,
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+      "folke/lazydev.nvim",
+    },
+    config = function()
+      local cmp = require("cmp")
+      local snip = require("luasnip")
 
       cmp.setup({
         snippet = {
@@ -126,24 +126,45 @@ return {
     end,
   },
 
-	{
-		"saghen/blink.cmp",
-		-- enabled = false,
-		dependencies = { "L3MON4D3/LuaSnip", "folke/lazydev.nvim" },
-		version = "1.*",
-		config = function()
-			local blink = require("blink-cmp")
+  {
+    "saghen/blink.cmp",
+    -- enabled = false,
+    dependencies = { "L3MON4D3/LuaSnip", "folke/lazydev.nvim" },
+    version = "1.*",
+    config = function()
+      local blink = require("blink-cmp")
 
       ---@module 'blink.cmp'
       ---@type blink.cmp.Config
       blink.setup({
         completion = {
+          list = {
+            selection = {
+              preselect = false,
+            },
+          },
+          documentation = {
+            auto_show = true,
+            auto_show_delay_ms = 200,
+            window = {
+              border = "rounded",
+            },
+          },
+          accept = {
+            -- Auto brackets sometimes stops LSP signature help from showing. Disabling for now.
+            auto_brackets = {
+              enabled = false,
+            },
+          },
           menu = {
+            border = "rounded",
             draw = {
+              treesitter = { "lsp" },
+              columns = { { "kind_icon" }, { "label", "label_description" }, { "source_name" } },
               components = {
-                kind_icon = {
+                source_name = {
                   text = function(ctx)
-                    return " " .. cmp_kinds[ctx.kind] or ctx.kind_icon .. ctx.icon_gap .. " "
+                    return "[" .. ctx.source_name .. "]"
                   end,
                 },
               },
@@ -162,7 +183,15 @@ return {
             },
           },
         },
-        signature = { enabled = true },
+        appearance = {
+          kind_icons = cmp_kinds,
+        },
+        signature = {
+          enabled = true,
+          window = {
+            border = "rounded",
+          },
+        },
         keymap = {
           preset = "super-tab",
 
