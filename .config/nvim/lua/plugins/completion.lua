@@ -39,21 +39,21 @@ return {
     end,
   },
 
-  {
-    "hrsh7th/nvim-cmp",
-    -- enabled = false,
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-nvim-lsp-signature-help",
-      "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip",
-      "folke/lazydev.nvim",
-    },
-    config = function()
-      local cmp = require("cmp")
-      local snip = require("luasnip")
+	{
+		"hrsh7th/nvim-cmp",
+		enabled = false,
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
+			"L3MON4D3/LuaSnip",
+			"saadparwaiz1/cmp_luasnip",
+			"folke/lazydev.nvim",
+		},
+		config = function()
+			local cmp = require("cmp")
+			local snip = require("luasnip")
 
       cmp.setup({
         snippet = {
@@ -126,13 +126,13 @@ return {
     end,
   },
 
-  {
-    "saghen/blink.cmp",
-    enabled = false,
-    dependencies = { "L3MON4D3/LuaSnip", "folke/lazydev.nvim" },
-    version = "1.*",
-    config = function()
-      local blink = require("blink-cmp")
+	{
+		"saghen/blink.cmp",
+		-- enabled = false,
+		dependencies = { "L3MON4D3/LuaSnip", "folke/lazydev.nvim" },
+		version = "1.*",
+		config = function()
+			local blink = require("blink-cmp")
 
       ---@module 'blink.cmp'
       ---@type blink.cmp.Config
