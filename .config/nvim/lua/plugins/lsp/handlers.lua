@@ -31,7 +31,7 @@ local function setup_keymaps(buffer)
       function()
         vim.lsp.buf.hover({ border = "rounded" })
       end,
-      desc = "[D]iagnostic Float"
+      desc = "Hover"
     },
     {
       "<leader>fs",
