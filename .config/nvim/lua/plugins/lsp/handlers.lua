@@ -25,13 +25,7 @@ local function setup_keymaps(buffer)
       end,
       desc = "[D]iagnostics Previous",
     },
-    {
-      "<leader>d",
-      function()
-        vim.diagnostic.open_float({ border = 'rounded' })
-      end,
-      desc = "[D]iagnostic Float"
-    },
+    { "<leader>d",  vim.diagnostic.open_float, desc = "[D]iagnostic Float" },
     {
       "<leader>fs",
       -- telescope_builtin.lsp_document_symbols,
@@ -46,8 +40,8 @@ local function setup_keymaps(buffer)
       end,
       desc = "[F]ind [S]ymbols",
     },
-    { "<leader>ca", vim.lsp.buf.code_action, desc = "[C]ode [A]ction" },
-    { "<leader>rn", vim.lsp.buf.rename,      desc = "[R]e[n]ame" },
+    { "<leader>ca", vim.lsp.buf.code_action,   desc = "[C]ode [A]ction" },
+    { "<leader>rn", vim.lsp.buf.rename,        desc = "[R]e[n]ame" },
     {
       "<leader>h",
       function()
