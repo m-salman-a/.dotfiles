@@ -18,20 +18,20 @@ return {
     },
   },
 
-	{
-		"neovim/nvim-lspconfig",
-		dependencies = {
-			-- These need to be loaded first.
-			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
-			-- "hrsh7th/cmp-nvim-lsp",
-			"saghen/blink.cmp",
-			"folke/lazydev.nvim",
-		},
-		config = function()
-			local handlers = require("plugins.lsp.handlers")
-			-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local capabilities = require("blink.cmp").get_lsp_capabilities()
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      -- These need to be loaded first.
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      -- "hrsh7th/cmp-nvim-lsp",
+      "saghen/blink.cmp",
+      "folke/lazydev.nvim",
+    },
+    config = function()
+      local handlers = require("plugins.lsp.handlers")
+      -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
 
       for _, server in ipairs(servers) do
         require("lspconfig")[server].setup(vim.tbl_deep_extend("force", {
@@ -66,18 +66,18 @@ return {
     },
   },
 
-	{
-		"akinsho/flutter-tools.nvim",
-		lazy = false,
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			-- "hrsh7th/cmp-nvim-lsp",
-			"saghen/blink.cmp",
-		},
-		config = function()
-			local handlers = require("plugins.lsp.handlers")
-			-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local capabilities = require("blink.cmp").get_lsp_capabilities()
+  {
+    "akinsho/flutter-tools.nvim",
+    lazy = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      -- "hrsh7th/cmp-nvim-lsp",
+      "saghen/blink.cmp",
+    },
+    config = function()
+      local handlers = require("plugins.lsp.handlers")
+      -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
 
       require("flutter-tools").setup({
         fvm = true,
@@ -107,19 +107,19 @@ return {
     end,
   },
 
-	{
-		"pmizio/typescript-tools.nvim",
-		enabled = false,
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"neovim/nvim-lspconfig",
-			-- "hrsh7th/cmp-nvim-lsp",
-			"saghen/blink.cmp",
-		},
-		config = function()
-			local handlers = require("plugins.lsp.handlers")
-			-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local capabilities = require("blink.cmp").get_lsp_capabilities()
+  {
+    "pmizio/typescript-tools.nvim",
+    enabled = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "neovim/nvim-lspconfig",
+      -- "hrsh7th/cmp-nvim-lsp",
+      "saghen/blink.cmp",
+    },
+    config = function()
+      local handlers = require("plugins.lsp.handlers")
+      -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
 
       require("typescript-tools").setup({
         on_attach = function(client, buffer)
