@@ -29,9 +29,7 @@ local function setup_keymaps(buffer)
     {
       "K",
       function()
-        vim.lsp.buf.hover({
-          border = 'rounded'
-        })
+        vim.lsp.buf.hover({ border = "rounded" })
       end,
       desc = "[D]iagnostic Float"
     },
