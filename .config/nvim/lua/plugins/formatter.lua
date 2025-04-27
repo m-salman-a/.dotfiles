@@ -8,7 +8,6 @@ return {
         event = { "BufWritePre" },
         cmd = { "ConformInfo" },
         formatters_by_ft = {
-          lua = { "stylua" },
           javascript = { "prettier" },
           javascriptreact = { "prettier" },
           typescript = { "prettier" },
