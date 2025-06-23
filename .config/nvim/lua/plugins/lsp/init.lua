@@ -34,7 +34,8 @@ return {
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
       for _, server in ipairs(servers) do
-        require("lspconfig")[server].setup(vim.tbl_deep_extend("force", {
+        vim.lsp.enable(server)
+        vim.lsp.config(server, vim.tbl_deep_extend("force", {
           capabilities = capabilities,
           on_attach = handlers.on_attach,
         }, handlers[server] or {}))
