@@ -8,7 +8,7 @@ local function setup_keymaps(buffer)
   -- :help lsp-defaults
   local keymaps = {
     { "gd", telescope_builtin.lsp_definitions,      desc = "[G]et [D]efinition" },
-    { "gy", telescope_builtin.lsp_type_definitions, desc = "[G]et T[y]pe Definition" },
+    { "gt", telescope_builtin.lsp_type_definitions, desc = "[G]et [T]ype Definition" },
     { "gI", telescope_builtin.lsp_implementations,  desc = "[G]et [I]mplementations" },
     { "gr", telescope_builtin.lsp_references,       desc = "[G]et [R]eferences" },
     {
