@@ -146,9 +146,6 @@ return {
           documentation = {
             auto_show = true,
             auto_show_delay_ms = 200,
-            window = {
-              border = "rounded",
-            },
           },
           accept = {
             -- Auto brackets sometimes stops LSP signature help from showing. Disabling for now.
@@ -157,7 +154,6 @@ return {
             },
           },
           menu = {
-            border = "rounded",
             draw = {
               treesitter = { "lsp" },
               columns = { { "kind_icon" }, { "label", "label_description" }, { "source_name" } },
@@ -188,9 +184,6 @@ return {
         },
         signature = {
           enabled = true,
-          window = {
-            border = "rounded",
-          },
         },
         keymap = {
           preset = "super-tab",

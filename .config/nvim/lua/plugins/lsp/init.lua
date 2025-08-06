@@ -1,11 +1,9 @@
-local servers = { "lua_ls", "eslint", "ts_ls", "jsonls" }
+local servers = { "lua_ls", "eslint", "ts_ls", "jsonls", "bashls" }
 
 return {
   {
     "williamboman/mason.nvim",
-    opts = {
-      ui = { border = "rounded" },
-    },
+    opts = {},
   },
 
   {

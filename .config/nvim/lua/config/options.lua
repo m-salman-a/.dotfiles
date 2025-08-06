@@ -45,7 +45,6 @@ vim.diagnostic.config({
       [vim.diagnostic.severity.HINT] = "󰌵",
     },
   },
-  float = {
-    border = "rounded",
-  },
 })
+
+vim.o.winborder = "rounded"

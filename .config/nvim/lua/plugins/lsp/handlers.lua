@@ -27,13 +27,6 @@ local function setup_keymaps(buffer)
     },
     { "<leader>d",  vim.diagnostic.open_float, desc = "[D]iagnostic Float" },
     {
-      "K",
-      function()
-        vim.lsp.buf.hover({ border = "rounded" })
-      end,
-      desc = "Hover"
-    },
-    {
       "<leader>fs",
       -- telescope_builtin.lsp_document_symbols,
       function()
