@@ -28,6 +28,8 @@ export FNM_COREPACK_ENABLED=true
 export COREPACK_ENABLE_AUTO_PIN=0
 export COREPACK_ENABLE_STRICT=0
 
+export REACT_EDITOR=code
+
 # history
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
