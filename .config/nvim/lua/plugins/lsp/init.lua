@@ -1,4 +1,4 @@
-local servers = { "lua_ls", "eslint", "ts_ls", "jsonls", "bashls" }
+local servers = { "lua_ls", "ts_ls", "jsonls", "bashls" }
 
 return {
   {
@@ -149,7 +149,6 @@ return {
 
   {
     "nvimtools/none-ls.nvim",
-    enabled = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvimtools/none-ls-extras.nvim",
@@ -157,7 +156,8 @@ return {
     config = function()
       require("null-ls").setup({
         sources = {
-          require("none-ls.diagnostics.eslint_d"),
+          -- This works the better than eslint_d and eslint lsp from Mason.
+          require("none-ls.diagnostics.eslint"),
         },
       })
     end,
