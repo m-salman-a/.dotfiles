@@ -8,11 +8,11 @@ return {
         event = { "BufWritePre" },
         cmd = { "ConformInfo" },
         formatters_by_ft = {
-          json = { "prettier" },
-          javascript = { "prettier" },
-          javascriptreact = { "prettier" },
-          typescript = { "prettier" },
-          typescriptreact = { "prettier" },
+          json = { "prettierd" },
+          javascript = { "prettierd" },
+          javascriptreact = { "prettierd" },
+          typescript = { "prettierd" },
+          typescriptreact = { "prettierd" },
         },
         format_on_save = function(bufnr)
           -- Disable with a global or buffer-local variable
