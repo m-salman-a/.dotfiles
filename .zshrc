@@ -24,6 +24,7 @@ export PATH="$HOME/.shorebird/bin:$PATH"
 export FVM_CACHE_PATH="$HOME/.fvm"
 
 export FNM_COREPACK_ENABLED=true
+export FNM_VERSION_FILE_STRATEGY="recursive"
 
 export COREPACK_ENABLE_AUTO_PIN=0
 export COREPACK_ENABLE_STRICT=0
@@ -53,7 +54,7 @@ fi
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh 
+source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 bindkey "^[[Z" autosuggest-accept
 
