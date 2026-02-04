@@ -11,47 +11,26 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local plugins = {
-  { import = "plugins" },
 
+require("lazy").setup({
+    {
+      import = "plugins",
+      cond = function()
+        return not vim.g.vscode
+      end
+    },
+    {
+      import = "plugins_vscode",
+      cond = function()
+        return vim.g.vscode
+      end
+    },
+  },
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
-    config = function()
-      vim.cmd([[colorscheme catppuccin-frappe]])
-    end,
-  },
-
-  {
-    "lewis6991/gitsigns.nvim",
-    opts = {},
-  },
-
-  {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    opts = {},
-  },
-
-  {
-    "echasnovski/mini.surround",
-    version = false,
-    opts = {},
-  },
-
-  {
-    "folke/todo-comments.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {},
-  },
-}
-
-require("lazy").setup(plugins, {
-  ui = {
-    border = "rounded",
-  },
-  dev = {
-    path = "~/Developer",
-  },
-})
+    ui = {
+      border = "rounded",
+    },
+    dev = {
+      path = "~/Developer",
+    },
+  })
