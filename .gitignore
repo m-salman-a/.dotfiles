@@ -1,0 +1,7 @@
+# ignore everything
+/.config/*
+
+.DS_Store
+
+!/.config/alacritty
+!/.config/nvim
