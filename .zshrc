@@ -9,17 +9,18 @@ if [[ $TMUX ]]; then
   alias clear="clear && tmux clear-history"
 fi
 
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home"
 
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH="$PATH:$ANDROID_HOME/emulator"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
-# dart
 export PATH="$PATH":"$FVM_CACHE_PATH/default/bin/cache/dart-sdk/bin"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 
-export PATH="$HOME/.shorebird/bin:$PATH"
+export PATH="$PATH:$HOME/.shorebird/bin"
+
+export PATH="$PATH:$HOME/.yarn/bin"
 
 export FVM_CACHE_PATH="$HOME/.fvm"
 
