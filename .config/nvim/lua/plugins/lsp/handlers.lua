@@ -6,11 +6,12 @@ local function setup_keymaps(buffer)
 
   -- For other lsp default keymaps use:
   -- :help lsp-defaults
+  -- stylua: ignore start
   local keymaps = {
-    { "gd", telescope_builtin.lsp_definitions, desc = "[G]et [D]efinition" },
+    { "gd", telescope_builtin.lsp_definitions,      desc = "[G]et [D]efinition" },
     { "gt", telescope_builtin.lsp_type_definitions, desc = "[G]et [T]ype Definition" },
-    { "gI", telescope_builtin.lsp_implementations, desc = "[G]et [I]mplementations" },
-    { "gr", telescope_builtin.lsp_references, desc = "[G]et [R]eferences" },
+    { "gI", telescope_builtin.lsp_implementations,  desc = "[G]et [I]mplementations" },
+    { "gr", telescope_builtin.lsp_references,       desc = "[G]et [R]eferences" },
     {
       "]d",
       function()
@@ -50,6 +51,7 @@ local function setup_keymaps(buffer)
       desc = "Inlay [H]int",
     },
   }
+  -- stylua: ignore end
 
   for _, keys in ipairs(keymaps) do
     local lhs = keys[1]

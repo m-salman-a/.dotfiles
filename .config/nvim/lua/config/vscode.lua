@@ -2,12 +2,10 @@ if not vim.g.vscode then
   return
 end
 
+vim.o.cmdheight = 2
+
 vim.o.splitbelow = true
 vim.o.splitright = true
-
-vim.o.tabstop = 2
-vim.o.softtabstop = 2
-vim.o.shiftwidth = 2
 
 vim.o.ignorecase = true
 vim.o.smartcase = true
