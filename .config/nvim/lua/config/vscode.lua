@@ -2,7 +2,7 @@ if not vim.g.vscode then
   return
 end
 
-vim.o.cmdheight = 2
+vim.o.cmdheight = 9999
 
 vim.o.splitbelow = true
 vim.o.splitright = true
