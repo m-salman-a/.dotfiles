@@ -1,7 +1,6 @@
-if (vim.g.vscode) then
-  require("config.vscode")
-  require("config.plugins")
-  return
+if vim.g.vscode then
+	require("config.vscode")
+	return
 end
 
 require("config.options")
