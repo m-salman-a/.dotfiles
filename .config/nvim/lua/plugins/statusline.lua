@@ -1,7 +1,6 @@
 return {
   {
     "nvim-lualine/lualine.nvim",
-    -- enabled = false,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       options = {
@@ -11,6 +10,7 @@ return {
       sections = {
         lualine_b = {},
         lualine_c = {
+          "diagnostics",
           {
             "filename",
             file_status = true,
@@ -19,7 +19,6 @@ return {
         },
         lualine_x = {
           "filetype",
-          "diagnostics",
         },
         lualine_y = {},
       },

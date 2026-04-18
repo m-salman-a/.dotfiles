@@ -1,55 +1,13 @@
 return {
   {
-    "nvim-tree/nvim-tree.lua",
-    enabled = false,
-    version = "*",
-    lazy = false,
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-    },
-    config = function()
-      vim.g.loaded_netrw = 1
-      vim.g.loaded_netrwPlugin = 1
-
-      require("nvim-tree").setup({
-        view = {
-          relativenumber = true,
-        },
-        update_focused_file = {
-          enable = true,
-        },
-        filters = { custom = { "^.git$" } },
-      })
-
-      local api = require("nvim-tree.api")
-
-      -- Automatically close
-      vim.api.nvim_create_autocmd({ "QuitPre" }, {
-        callback = function()
-          api.tree.close()
-        end,
-      })
-
-      -- Automatically open file upon creation
-      api.events.subscribe(api.events.Event.FileCreated, function(file)
-        vim.cmd("edit " .. file.fname)
-      end)
-
-      vim.keymap.set("n", "<leader>e", api.tree.toggle, {
-        desc = "File [E]xplorer",
-      })
-    end,
-  },
-
-  {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim",
     },
-    lazy = false, -- neo-tree will lazily load itself
+    lazy = false,
     config = function()
       vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
@@ -136,8 +94,9 @@ return {
 
   {
     "stevearc/oil.nvim",
-    -- Optional dependencies
-    dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
     ---@module 'oil'
     ---@type oil.SetupOpts
     opts = {
@@ -148,7 +107,6 @@ return {
         autosave_changes = false,
       },
     },
-    -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
     lazy = false,
   },
 }

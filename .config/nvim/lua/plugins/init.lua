@@ -14,14 +14,14 @@ return {
   },
 
   {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
+    "nvim-mini/mini.pairs",
+    version = "*",
     opts = {},
   },
 
   {
-    "echasnovski/mini.surround",
-    version = false,
+    "nvim-mini/mini.surround",
+    version = "*",
     opts = {},
   },
 

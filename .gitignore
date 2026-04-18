@@ -1,7 +1,8 @@
 # ignore everything
-/.config/*
+/*
 
-.DS_Store
-
-!/.config/alacritty
-!/.config/nvim
+# except
+!.zshrc
+!.tmux.conf
+!/.config/alacritty/*
+!/.config/nvim/*
