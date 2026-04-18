@@ -1,5 +1,3 @@
-local servers = { "lua_ls", "ts_ls", "jsonls", "bashls" }
-
 return {
   {
     "williamboman/mason.nvim",
@@ -30,13 +28,12 @@ return {
 
   {
     "akinsho/flutter-tools.nvim",
-    lazy = false,
+    ft = { "dart" },
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "saghen/blink.cmp",
     },
     config = function()
-      local handlers = require("plugins.lsp.handlers")
+      local handlers = require("config.lsp.handlers")
       local capabilities = {}
 
       local blink_ok, blink = pcall(require, "blink.cmp")
