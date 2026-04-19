@@ -1,0 +1,200 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+    },
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      // "j k": "vim::NormalBefore"
+    },
+  },
+  // Toggle file tree
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-e": "pane::RevealInProjectPanel",
+    },
+  },
+  {
+    "context": "Dock",
+    "bindings": {
+      "cmd-e": "project_panel::Toggle",
+    },
+  },
+  {
+    "context": "Editor && mode == full",
+    "unbind": {
+      "cmd-e": "buffer_search::Deploy",
+    },
+  },
+  // Toggle AI
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-l": "workspace::ToggleRightDock",
+    },
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "cmd-l": "editor::SelectLine",
+    },
+  },
+  // Toggle git panel
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-g": "git_panel::Toggle",
+    },
+  },
+  {
+    "context": "Pane",
+    "unbind": {
+      "cmd-g": "search::SelectNextMatch",
+    },
+  },
+  // Git staging
+  {
+    "context": "GitDiff",
+    "bindings": {
+      "space": "git::ToggleStaged",
+      "d": "git::Restore",
+      "n": "editor::GoToHunk",
+      "shift-n": "editor::GoToPreviousHunk",
+    },
+  },
+  {
+    "context": "VimControl && !menu",
+    "unbind": {
+      "space": "vim::WrappingRight",
+      "d": "vim::PushDelete",
+      "n": "vim::MoveToNextMatch",
+      "shift-n": "vim::MoveToPreviousMatch",
+    },
+  },
+  {
+    "context": "!GitDiff && VimControl && !menu",
+    "bindings": {
+      "space": "vim::WrappingRight",
+      "n": "vim::MoveToNextMatch",
+      "shift-n": "vim::MoveToPreviousMatch",
+    },
+  },
+  {
+    "context": "!GitDiff && VimControl && !menu && vim_operator != d",
+    "bindings": {
+      "d": "vim::PushDelete",
+    },
+  },
+  {
+    "context": "!GitDiff && VimControl && vim_mode == visual",
+    "bindings": {
+      "d": "vim::VisualDelete",
+    },
+  },
+  // Open recent workspaces
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-cmd-o": [
+        "projects::OpenRecent",
+        {
+          "create_new_window": true,
+        },
+      ],
+      "alt-cmd-o": [
+        "projects::OpenRemote",
+        {
+          "from_existing_connection": false,
+          "create_new_window": false,
+        },
+      ],
+    },
+  },
+  // Show completion
+  {
+    "context": "Editor && vim_mode == insert && !showing_completions",
+    "bindings": {
+      "ctrl-n": "editor::ShowCompletions",
+    },
+  },
+  // Dismiss search bar
+  {
+    "context": "BufferSearchBar",
+    "bindings": {
+      "ctrl-l": "buffer_search::Dismiss",
+    },
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "ctrl-l": "editor::ScrollCursorCenter",
+    },
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "ctrl-l": "buffer_search::Dismiss",
+    },
+  },
+  // Git panel
+  {
+    "context": "GitPanel && ChangesList",
+    "bindings": {
+      "ctrl-w j": "git_panel::FocusEditor",
+    },
+  },
+  {
+    "context": "GitPanel && CommitEditor",
+    "bindings": {
+      "ctrl-w k": "git_panel::FocusChanges",
+    },
+  },
+  {
+    "context": "((VimControl && !menu) || (!Editor && !Terminal))",
+    "unbind": {
+      "ctrl-w k": "workspace::ActivatePaneUp",
+    },
+  },
+  {
+    "context": "!GitPanel && ((VimControl && !menu) || (!Editor && !Terminal))",
+    "bindings": {
+      "ctrl-w k": "workspace::ActivatePaneUp",
+    },
+  },
+  // Terminal
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-t": [
+        "task::Spawn",
+        {
+          "task_name": "new terminal",
+        },
+      ],
+    },
+  },
+  // Diagnostics
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-d": "editor::ToggleDiagnostics",
+    },
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "cmd-d": "editor::SelectNext",
+    },
+  },
+]

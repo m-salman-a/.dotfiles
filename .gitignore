@@ -5,3 +5,6 @@
 !/.config/alacritty/
 !/.config/kitty/
 !/.config/nvim/
+
+!/.config/zed/
+/.config/zed/prompts/
