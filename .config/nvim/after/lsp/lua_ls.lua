@@ -1,5 +1,8 @@
+local handlers = require("config.lsp.handlers")
+
 ---@type vim.lsp.Config
 return {
+  on_attach = handlers.on_attach,
   on_init = function(client)
     if client.workspace_folders then
       local path = client.workspace_folders[1].name
