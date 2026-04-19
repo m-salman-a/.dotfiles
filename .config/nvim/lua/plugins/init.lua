@@ -2,9 +2,21 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
+    enabled = false,
     priority = 1000,
     config = function()
       vim.cmd([[colorscheme catppuccin-frappe]])
+    end,
+  },
+
+  {
+    "https://github.com/navarasu/onedark.nvim",
+    priority = 1000,
+    config = function()
+      require("onedark").setup({
+        style = "dark",
+      })
+      require("onedark").load()
     end,
   },
 
