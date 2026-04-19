@@ -3,13 +3,11 @@
 // Example:
 [
   {
-    "label": "new terminal",
+    "label": "Terminal",
     "command": "$SHELL",
     "use_new_terminal": true,
     "allow_concurrent_runs": true,
-    "shell": "system",
     "reveal_target": "center",
-    "hide": "always",
     "tags": ["new-terminal"],
   },
 ]

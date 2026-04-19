@@ -179,7 +179,7 @@
       "cmd-t": [
         "task::Spawn",
         {
-          "task_name": "new terminal",
+          "task_name": "Terminal",
         },
       ],
     },
@@ -188,7 +188,7 @@
   {
     "context": "Workspace",
     "bindings": {
-      "cmd-d": "editor::ToggleDiagnostics",
+      "cmd-d": "diagnostics::Deploy",
     },
   },
   {
