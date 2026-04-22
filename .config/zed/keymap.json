@@ -18,7 +18,7 @@
       // "j k": "vim::NormalBefore"
     },
   },
-  // Toggle file tree
+  // Toggle file explorer
   {
     "context": "Workspace",
     "bindings": {
@@ -35,6 +35,18 @@
     "context": "Editor && mode == full",
     "unbind": {
       "cmd-e": "buffer_search::Deploy",
+    },
+  },
+  // File explorer editing
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "a": "project_panel::NewFile",
+      "shift-a": "project_panel::NewDirectory",
+      "d": "project_panel::Delete",
+      "r": "project_panel::Rename",
+      "y y": "project_panel::Copy",
+      "p": "project_panel::Paste",
     },
   },
   // Toggle AI
@@ -63,12 +75,37 @@
       "cmd-g": "search::SelectNextMatch",
     },
   },
+  // Git panel
+  {
+    "context": "GitPanel && ChangesList",
+    "bindings": {
+      "ctrl-w j": "git_panel::FocusEditor",
+    },
+  },
+  {
+    "context": "GitPanel && CommitEditor",
+    "bindings": {
+      "ctrl-w k": "git_panel::FocusChanges",
+    },
+  },
+  {
+    "context": "((VimControl && !menu) || (!Editor && !Terminal))",
+    "unbind": {
+      "ctrl-w k": "workspace::ActivatePaneUp",
+    },
+  },
+  {
+    "context": "!GitPanel && ((VimControl && !menu) || (!Editor && !Terminal))",
+    "bindings": {
+      "ctrl-w k": "workspace::ActivatePaneUp",
+    },
+  },
   // Git staging
   {
-    "context": "GitDiff",
+    "context": "GitDiff && vim_mode == normal",
     "bindings": {
       "space": "git::ToggleStaged",
-      "d": "git::Restore",
+      "backspace": "git::Restore",
       "n": "editor::GoToHunk",
       "shift-n": "editor::GoToPreviousHunk",
     },
@@ -77,7 +114,7 @@
     "context": "VimControl && !menu",
     "unbind": {
       "space": "vim::WrappingRight",
-      "d": "vim::PushDelete",
+      "backspace": "vim::WrappingLeft",
       "n": "vim::MoveToNextMatch",
       "shift-n": "vim::MoveToPreviousMatch",
     },
@@ -86,20 +123,21 @@
     "context": "!GitDiff && VimControl && !menu",
     "bindings": {
       "space": "vim::WrappingRight",
+      "backspace": "vim::WrappingLeft",
       "n": "vim::MoveToNextMatch",
       "shift-n": "vim::MoveToPreviousMatch",
     },
   },
   {
-    "context": "!GitDiff && VimControl && !menu && vim_operator != d",
-    "bindings": {
-      "d": "vim::PushDelete",
+    "context": "Editor",
+    "unbind": {
+      "backspace": "editor::Backspace",
     },
   },
   {
-    "context": "!GitDiff && VimControl && vim_mode == visual",
-    "bindings": {
-      "d": "vim::VisualDelete",
+    "context": "!GitDiff && Editor",
+    "unbind": {
+      "backspace": "editor::Backspace",
     },
   },
   // Open recent workspaces
@@ -145,31 +183,6 @@
     "context": "Editor && vim_mode == normal",
     "bindings": {
       "ctrl-l": "buffer_search::Dismiss",
-    },
-  },
-  // Git panel
-  {
-    "context": "GitPanel && ChangesList",
-    "bindings": {
-      "ctrl-w j": "git_panel::FocusEditor",
-    },
-  },
-  {
-    "context": "GitPanel && CommitEditor",
-    "bindings": {
-      "ctrl-w k": "git_panel::FocusChanges",
-    },
-  },
-  {
-    "context": "((VimControl && !menu) || (!Editor && !Terminal))",
-    "unbind": {
-      "ctrl-w k": "workspace::ActivatePaneUp",
-    },
-  },
-  {
-    "context": "!GitPanel && ((VimControl && !menu) || (!Editor && !Terminal))",
-    "bindings": {
-      "ctrl-w k": "workspace::ActivatePaneUp",
     },
   },
   // Terminal

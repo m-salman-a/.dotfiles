@@ -9,17 +9,18 @@
 {
   "vim": {
     "use_smartcase_find": true,
-    "use_system_clipboard": "never"
+    "use_system_clipboard": "never",
   },
   "diff_view_style": "split",
   "git_panel": {
     "tree_view": true,
-    "fallback_branch_name": "main"
+    "fallback_branch_name": "main",
   },
   "terminal": {
-    "font_family": "MesloLGM Nerd Font Mono"
+    "font_size": 13.0,
+    "font_family": "MesloLGM Nerd Font Mono",
   },
-  "buffer_font_family": "Menlo",
+  "buffer_font_family": "SF Mono",
   "telemetry": {
     "diagnostics": false,
     "metrics": false,
@@ -32,5 +33,50 @@
     "mode": "system",
     "light": "One Light",
     "dark": "One Dark",
+  },
+  "lsp": {
+    "biome": {
+      "settings": {
+        "require_config_file": true,
+        "inline_config": {
+          "formatter": {
+            "bracketSpacing": false,
+          },
+        },
+      },
+    },
+  },
+  "languages": {
+    "CSS": {
+      "formatter": ["prettier", { "language_server": { "name": "biome" } }],
+    },
+    "JSON": {
+      "formatter": ["prettier", { "language_server": { "name": "biome" } }],
+      "language_servers": ["json-language-server"],
+    },
+    "JSONC": {
+      "formatter": ["prettier", { "language_server": { "name": "biome" } }],
+    },
+    "JavaScript": {
+      "formatter": ["prettier", { "language_server": { "name": "biome" } }],
+      "code_actions_on_format": {
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true,
+      },
+    },
+    "TypeScript": {
+      "formatter": ["prettier", { "language_server": { "name": "biome" } }],
+      "code_actions_on_format": {
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true,
+      },
+    },
+    "TSX": {
+      "formatter": ["prettier", { "language_server": { "name": "biome" } }],
+      "code_actions_on_format": {
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true,
+      },
+    },
   },
 }
