@@ -1,10 +1,11 @@
 -- TODO:
--- biome lint
--- lsp document file operations
+-- create branch from telescope git branch picker
+-- lsp document file operations deprecated
 -- show context at statusline
 -- keymaps table
 -- move lsp color highlight to virtual text
 -- FIXME:
+-- biome lsp for monorepo setup
 -- fix neo tree showing double gitsigns
 
 vim.g.mapleader = " "
