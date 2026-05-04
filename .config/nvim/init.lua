@@ -157,7 +157,7 @@ require("treesitter-context").setup({
   enable = false,
 })
 
-local lsp_servers = { "lua_ls", "vtsls", "jsonls", "basedpyright" }
+local lsp_servers = { "lua_ls", "vtsls", "jsonls", "basedpyright", "biome" }
 for _, server in ipairs(lsp_servers) do
   vim.lsp.enable(server)
 end

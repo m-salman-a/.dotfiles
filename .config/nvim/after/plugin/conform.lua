@@ -1,4 +1,4 @@
-local js_formatters = { "prettierd", "biome-check", stop_after_first = true }
+local js_formatters = { "biome-check", "prettierd", stop_after_first = true }
 
 require("conform").setup({
   formatters_by_ft = {
