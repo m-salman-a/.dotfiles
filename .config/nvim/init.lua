@@ -1,4 +1,6 @@
 -- TODO:
+-- AI integration
+-- markdown viewer
 -- create branch from telescope git branch picker
 -- lsp document file operations deprecated
 -- show context at statusline
@@ -111,6 +113,7 @@ vim.pack.add({
   { src = "https://github.com/nvimtools/none-ls.nvim" },
   { src = "https://github.com/nvimtools/none-ls-extras.nvim" },
   { src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
+  { src = "https://github.com/windwp/nvim-ts-autotag" },
 })
 
 require("mason").setup()
@@ -134,6 +137,8 @@ require("mini.surround").setup()
 require("nvim-autopairs").setup({
   enable_check_bracket_line = true,
 })
+
+require("nvim-ts-autotag").setup()
 
 require("oil").setup({
   default_file_explorer = false,
