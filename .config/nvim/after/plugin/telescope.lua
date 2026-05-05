@@ -43,4 +43,4 @@ telescope.load_extension("fzf")
 
 vim.keymap.set("n", "<leader>p", builtin.find_files, { desc = "Find in [p]roject", silent = true, noremap = true })
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[F]ind [g]rep", silent = true, noremap = true })
-vim.keymap.set("n", "<leader>gb", builtin.git_branches, { desc = "[G]it [b]ranch", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>fb", builtin.git_branches, { desc = "[G]it [b]ranch", silent = true, noremap = true })

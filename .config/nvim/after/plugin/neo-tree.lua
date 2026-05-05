@@ -149,7 +149,7 @@ vim.keymap.set(
 
 vim.keymap.set(
   "n",
-  "<leader>fb",
+  "<leader>bb",
   "<Cmd>Neotree toggle buffers<CR>",
   { desc = "[B]uffers", noremap = true, silent = true }
 )
