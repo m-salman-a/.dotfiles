@@ -9,6 +9,8 @@ if [[ $TMUX ]]; then
   alias clear="clear && tmux clear-history"
 fi
 
+export PATH="$HOME/.local/bin:$PATH"
+
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home"
 
 export ANDROID_HOME="$HOME/Library/Android/sdk"
