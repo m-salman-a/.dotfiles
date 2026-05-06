@@ -1,5 +1,4 @@
 -- TODO:
--- AI integration
 -- markdown viewer
 -- create branch from telescope git branch picker
 -- lsp document file operations deprecated
@@ -8,7 +7,6 @@
 -- move lsp color highlight to virtual text
 -- FIXME:
 -- biome lsp for monorepo setup
--- fix neo tree showing double gitsigns
 
 vim.g.mapleader = " "
 vim.o.number = true
@@ -164,6 +162,9 @@ require("todo-comments").setup()
 require("treesitter-context").setup({
   enable = false,
 })
+
+require("plugin.claude").setup()
+require("plugin.lazygit").setup()
 
 local lsp_servers = { "lua_ls", "vtsls", "jsonls", "basedpyright", "biome" }
 for _, server in ipairs(lsp_servers) do
