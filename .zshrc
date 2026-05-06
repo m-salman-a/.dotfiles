@@ -22,6 +22,7 @@ export PATH="$PATH:$HOME/.shorebird/bin"
 
 export PATH="$PATH:$HOME/.yarn/bin"
 
+export PATH="$PATH:$HOME/fvm/bin"
 export FVM_CACHE_PATH="$HOME/.fvm"
 
 export FNM_COREPACK_ENABLED=true
@@ -32,7 +33,6 @@ export COREPACK_ENABLE_STRICT=0
 
 export REACT_EDITOR=code
 
-# history
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
@@ -45,24 +45,22 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-# zsh-completions
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+if [[ -n $HOMEBREW_PREFIX ]]; then
+  FPATH=$HOMEBREW_PREFIX/share/zsh-completions:$FPATH
 
   autoload -Uz compinit
-  compinit
+  compinit -C
 fi
 
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOMEBREW_PREFIX/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 bindkey "^[[Z" autosuggest-accept
 
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 
-# Set up fzf key bindings and fuzzy completion
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \
 --color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf \
