@@ -7,9 +7,16 @@ local windows_visible = true
 local buffer_window_map = {}
 
 local open_win = function(buf)
+  local last_win = nil
+  for _, win in pairs(buffer_window_map) do
+    last_win = win
+  end
+
   local win = vim.api.nvim_open_win(buf, true, {
     split = "right",
+    width = math.ceil(vim.o.columns * 0.35),
     style = "minimal",
+    win = last_win,
   })
   vim.wo[win].winhighlight = "Normal:Normal,NormalNC:NormalNC"
   return win
