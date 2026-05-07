@@ -11,6 +11,13 @@ M.on_attach = function(client, bufnr)
       end,
     })
   end, { desc = "[G]et actions", silent = true, noremap = true })
+  vim.keymap.set("n", "gra", function()
+    vim.lsp.buf.code_action({
+      filter = function(action)
+        return not action.disabled
+      end,
+    })
+  end, { desc = "[G]et actions", silent = true, noremap = true })
 end
 
 return M
