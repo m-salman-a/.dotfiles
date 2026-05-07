@@ -105,7 +105,7 @@ require("neo-tree").setup({
   filesystem = {
     filtered_items = {
       hide_dotfiles = false,
-      hide_gitignored = true,
+      hide_gitignored = false,
     },
     mappings = {
       ["d"] = "trash",
@@ -145,11 +145,4 @@ vim.keymap.set(
   "<leader>e",
   "<Cmd>Neotree toggle reveal<CR>",
   { desc = "File [E]xplorer", noremap = true, silent = true }
-)
-
-vim.keymap.set(
-  "n",
-  "<leader>bb",
-  "<Cmd>Neotree toggle buffers<CR>",
-  { desc = "[B]uffers", noremap = true, silent = true }
 )

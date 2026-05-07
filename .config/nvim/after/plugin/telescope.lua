@@ -18,6 +18,9 @@ telescope.setup({
       i = {
         ["<esc>"] = actions.close,
       },
+      n = {
+        ["q"] = actions.close,
+      },
     },
     preview = {
       filesize_limit = 0.1, -- MB
@@ -32,9 +35,10 @@ telescope.setup({
       -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
       find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
     },
-    git_branches = {
+    buffers = {
       theme = "dropdown",
       preview = false,
+      initial_mode = "normal",
     },
   },
 })
@@ -43,4 +47,4 @@ telescope.load_extension("fzf")
 
 vim.keymap.set("n", "<leader>p", builtin.find_files, { desc = "Find in [p]roject", silent = true, noremap = true })
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[F]ind [g]rep", silent = true, noremap = true })
-vim.keymap.set("n", "<leader>fb", builtin.git_branches, { desc = "[G]it [b]ranch", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "[B]uffers", noremap = true, silent = true })
