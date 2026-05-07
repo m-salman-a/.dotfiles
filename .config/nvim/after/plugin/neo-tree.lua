@@ -40,9 +40,39 @@ end
 require("neo-tree").setup({
   close_if_last_window = true,
   popup_border_style = "", -- "" to use 'winborder'
+  sources = {
+    "filesystem",
+    "buffers",
+    "document_symbols",
+  },
   commands = {
     trash = trash,
     trash_visual = trash_visual,
+  },
+  window = {
+    mappings = {
+      ["h"] = function(state)
+        local node = state.tree:get_node()
+        if (node.type == "directory" or node:has_children()) and node:is_expanded() then
+          state.commands.toggle_node(state)
+        else
+          require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
+        end
+      end,
+      ["l"] = function(state)
+        local node = state.tree:get_node()
+        if node.type == "directory" or node:has_children() then
+          if not node:is_expanded() then
+            state.commands.toggle_node(state)
+          else
+            require("neo-tree.ui.renderer").focus_node(state, node:get_child_ids()[1])
+          end
+        else
+          state.commands.open(state)
+        end
+      end,
+      ["<S-l>"] = "open",
+    },
   },
   default_component_configs = {
     modified = {
@@ -107,32 +137,28 @@ require("neo-tree").setup({
       hide_dotfiles = false,
       hide_gitignored = false,
     },
-    mappings = {
-      ["d"] = "trash",
+    window = {
+      mappings = {
+        ["d"] = "trash",
+        ["v"] = "open_vsplit",
+      },
     },
   },
-  window = {
-    mappings = {
-      ["v"] = "open_vsplit",
-      ["h"] = function(state)
-        local node = state.tree:get_node()
-        if node.type == "directory" and node:is_expanded() then
-          require("neo-tree.sources.filesystem").toggle_directory(state, node)
-        else
-          require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
-        end
-      end,
-      ["l"] = function(state)
-        local node = state.tree:get_node()
-        if node.type == "directory" then
-          if not node:is_expanded() then
-            require("neo-tree.sources.filesystem").toggle_directory(state, node)
-          elseif node:has_children() then
-            require("neo-tree.ui.renderer").focus_node(state, node:get_child_ids()[1])
-          end
-        else
-          require("neo-tree.sources.filesystem.commands").open(state)
-        end
+  buffers = {
+    -- buffers/init.lua BEFORE_RENDER calls git.status() synchronously (vim.fn.system);
+    -- override with no-op to avoid blocking the UI on large repos
+    before_render = function(_) end,
+    window = {
+      mappings = {
+        ["d"] = "buffer_delete",
+      },
+    },
+  },
+  document_symbols = {
+    commands = {
+      open = function(state)
+        require("neo-tree.sources.document_symbols.commands").open(state)
+        require("neo-tree.command").execute({ action = "close" })
       end,
     },
   },
@@ -145,4 +171,16 @@ vim.keymap.set(
   "<leader>e",
   "<Cmd>Neotree toggle reveal<CR>",
   { desc = "File [E]xplorer", noremap = true, silent = true }
+)
+vim.keymap.set(
+  "n",
+  "<leader>fb",
+  "<Cmd>Neotree toggle buffers<CR>",
+  { desc = "[B]uffers", noremap = true, silent = true }
+)
+vim.keymap.set(
+  "n",
+  "<leader>so",
+  "<Cmd>Neotree document_symbols<CR>",
+  { desc = "Document [s]ymb[o]ls", noremap = true, silent = true }
 )
