@@ -42,6 +42,7 @@ require("onedark").setup({
     red = "#d07277",
   },
   highlights = {
+    ["@constructor"] = { fg = "$purple", fmt = "none" },
     ["@tag.tsx"] = { fg = "$yellow" },
     ["@tag.builtin.tsx"] = { fg = "$yellow" },
     ["@tag.delimiter.tsx"] = { fg = "$fg" },

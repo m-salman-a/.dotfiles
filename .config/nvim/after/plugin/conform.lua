@@ -7,6 +7,7 @@ require("conform").setup({
     typescript = js_formatters,
     javascriptreact = js_formatters,
     typescriptreact = js_formatters,
+    json = js_formatters,
     dart = { lsp_format = true },
   },
   format_on_save = function(bufnr)
