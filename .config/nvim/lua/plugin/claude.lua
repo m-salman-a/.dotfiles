@@ -1,5 +1,8 @@
 local M = {}
 
+local cmd = "claude"
+local cmd_name = "Claude Code"
+
 local global_config = {
   window = {
     width_percentage = 0.35,
@@ -20,10 +23,13 @@ local open_win = function(buf)
 
   local win = vim.api.nvim_open_win(buf, true, {
     split = "right",
-    width = math.ceil(vim.o.columns * global_config.window.width_percentage),
     style = "minimal",
+    width = math.ceil(vim.o.columns * global_config.window.width_percentage),
     win = last_win,
   })
+  if win == 0 then
+    return 0
+  end
 
   vim.wo[win].winhighlight = "Normal:Normal,NormalNC:NormalNC"
 
@@ -33,14 +39,12 @@ local open_win = function(buf)
 end
 
 M.open_claude = function()
-  local cmd = "claude"
-  if vim.fn.executable(cmd) == 0 then
-    vim.notify("Claude CLI not found. Please install it or check your PATH.", vim.log.levels.ERROR)
+  local buf = vim.api.nvim_create_buf(false, true)
+  if buf == 0 then
     return
   end
 
-  local buf = vim.api.nvim_create_buf(false, true)
-  vim.api.nvim_buf_set_name(buf, "Claude Code")
+  vim.api.nvim_buf_set_name(buf, cmd_name)
 
   open_win(buf)
 
@@ -114,6 +118,9 @@ M.check_claude_windows_remaining = function()
       end
 
       local buf = vim.api.nvim_create_buf(true, false)
+      if buf == 0 then
+        return
+      end
 
       vim.api.nvim_open_win(buf, true, {
         split = "left",
@@ -147,9 +154,17 @@ M.toggle_claude = function()
 end
 
 M.setup = function(config)
+  if vim.fn.executable(cmd) == 0 then
+    vim.notify(cmd_name .. " not found. Please install it or check your PATH.", vim.log.levels.ERROR)
+    return
+  end
+
   if config ~= nil then
     global_config = config
   end
+
+  vim.api.nvim_create_user_command("ClaudeNew", M.open_claude, { desc = "Open Claude" })
+  vim.api.nvim_create_user_command("ClaudeToggle", M.toggle_claude, { desc = "Toggle Claude" })
 
   vim.keymap.set("n", "<leader>an", M.open_claude, { desc = "[A]i [n]ew", silent = true, noremap = true })
   vim.keymap.set("n", "<leader>ai", M.toggle_claude, { desc = "[A][i]", silent = true, noremap = true })

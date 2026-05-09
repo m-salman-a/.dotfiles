@@ -1,6 +1,4 @@
 -- TODO:
--- markdown viewer
--- create branch from telescope git branch picker
 -- lsp document file operations deprecated
 -- show context at statusline
 -- keymaps table
@@ -164,8 +162,9 @@ require("treesitter-context").setup({
   enable = false,
 })
 
-require("plugin.claude").setup()
 require("plugin.lazygit").setup()
+require("plugin.leaf").setup()
+require("plugin.claude").setup()
 
 local lsp_servers = { "lua_ls", "vtsls", "jsonls", "basedpyright", "biome" }
 for _, server in ipairs(lsp_servers) do
