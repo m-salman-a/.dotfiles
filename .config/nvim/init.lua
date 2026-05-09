@@ -47,7 +47,8 @@ require("onedark").setup({
     ["@variable.builtin"] = { fg = "$fg" },
     ["@lsp.type.property"] = { fg = "$red" },
     ["@lsp.type.parameter"] = { fg = "$fg" },
-    ["@lsp.mod.annotation"] = { fg = "$blue" },
+    ["@lsp.type.annotation"] = { fg = "$purple" },
+    ["@lsp.mod.annotation"] = { fg = "$purple" },
     ["@lsp.mod.label"] = { fg = "$red" },
     ["@lsp.typemod.variable.defaultLibrary"] = { fg = "$fg" },
     DiagnosticHint = { fg = "$cyan" },
@@ -175,10 +176,10 @@ vim.diagnostic.config({
   virtual_text = true,
   signs = {
     text = {
-      [vim.diagnostic.severity.ERROR] = "",
-      [vim.diagnostic.severity.WARN] = "",
-      [vim.diagnostic.severity.INFO] = "",
-      [vim.diagnostic.severity.HINT] = "󰌵",
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.INFO] = "",
+      [vim.diagnostic.severity.HINT] = "",
     },
   },
   jump = {
