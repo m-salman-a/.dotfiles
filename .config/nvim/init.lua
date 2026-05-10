@@ -195,6 +195,11 @@ vim.keymap.set(
   { desc = "[S]hift to previous buffer", silent = true, noremap = true }
 )
 
+vim.keymap.set("n", "<A-k>", ":resize +2<CR>", { silent = true })
+vim.keymap.set("n", "<A-j>", ":resize -2<CR>", { silent = true })
+vim.keymap.set("n", "<A-h>", ":vertical resize -2<CR>", { silent = true })
+vim.keymap.set("n", "<A-l>", ":vertical resize +2<CR>", { silent = true })
+
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
   group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),

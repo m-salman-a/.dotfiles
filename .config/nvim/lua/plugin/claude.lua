@@ -58,6 +58,7 @@ M.open_claude = function()
   ---@type vim.keymap.set.Opts
   local opts = { silent = true, noremap = true, buf = buf }
   vim.keymap.set("t", "<C-w>n", [[<C-\><C-n>]], opts)
+  vim.keymap.set("t", "<C-w>w", [[<C-\><C-n><C-w>w]], opts)
   vim.keymap.set("t", "<C-w>h", [[<C-\><C-n><C-w>h]], opts)
   vim.keymap.set("t", "<C-w>j", [[<C-\><C-n><C-w>j]], opts)
   vim.keymap.set("t", "<C-w>k", [[<C-\><C-n><C-w>k]], opts)
