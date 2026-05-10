@@ -173,7 +173,7 @@ for _, server in ipairs(lsp_servers) do
 end
 
 vim.diagnostic.config({
-  virtual_text = true,
+  severity_sort = true,
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = "",
