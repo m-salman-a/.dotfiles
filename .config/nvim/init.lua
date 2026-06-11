@@ -113,6 +113,7 @@ vim.pack.add({
   { src = "https://github.com/nvimtools/none-ls-extras.nvim" },
   { src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
   { src = "https://github.com/windwp/nvim-ts-autotag" },
+  { src = "https://github.com/lukas-reineke/indent-blankline.nvim" },
 })
 
 require("mason").setup()
@@ -162,6 +163,10 @@ require("todo-comments").setup()
 
 require("treesitter-context").setup({
   enable = false,
+})
+
+require("ibl").setup({
+  scope = { enabled = false },
 })
 
 require("plugin.lazygit").setup()
