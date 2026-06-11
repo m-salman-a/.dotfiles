@@ -172,6 +172,7 @@ require("ibl").setup({
 require("plugin.lazygit").setup()
 require("plugin.leaf").setup()
 require("plugin.claude").setup()
+require("plugin.lsp-highlight").setup()
 
 local lsp_servers = { "lua_ls", "vtsls", "jsonls", "basedpyright", "biome" }
 for _, server in ipairs(lsp_servers) do
