@@ -24,7 +24,7 @@ export PATH="$PATH:$HOME/.shorebird/bin"
 
 export PATH="$PATH:$HOME/.yarn/bin"
 
-export PATH="$PATH:$HOME/fvm/bin"
+export PATH="$PATH:$HOME/.fvm/bin"
 export FVM_CACHE_PATH="$HOME/.fvm"
 
 export FNM_COREPACK_ENABLED=true
@@ -33,7 +33,9 @@ export FNM_VERSION_FILE_STRATEGY="recursive"
 export COREPACK_ENABLE_AUTO_PIN=0
 export COREPACK_ENABLE_STRICT=0
 
-export REACT_EDITOR=code
+export REACT_EDITOR=nvim
+
+export NX_SOCKET_DIR=/tmp/nx-tmp
 
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
