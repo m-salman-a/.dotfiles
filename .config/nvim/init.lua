@@ -46,6 +46,7 @@ require("onedark").setup({
     ["@tag.builtin.tsx"] = { fg = "$yellow" },
     ["@tag.delimiter.tsx"] = { fg = "$fg" },
     ["@variable.builtin"] = { fg = "$fg" },
+    ["@variable.member"] = { fg = "$red" },
     ["@lsp.type.property"] = { fg = "$red" },
     ["@lsp.type.parameter"] = { fg = "$fg" },
     ["@lsp.type.annotation"] = { fg = "$purple" },
@@ -184,10 +185,14 @@ vim.diagnostic.config({
   virtual_text = false,
   signs = {
     text = {
-      [vim.diagnostic.severity.ERROR] = "",
-      [vim.diagnostic.severity.WARN] = "",
-      [vim.diagnostic.severity.INFO] = "",
-      [vim.diagnostic.severity.HINT] = "",
+      -- [vim.diagnostic.severity.ERROR] = "",
+      -- [vim.diagnostic.severity.WARN] = "",
+      -- [vim.diagnostic.severity.INFO] = "",
+      -- [vim.diagnostic.severity.HINT] = "",
+      [vim.diagnostic.severity.ERROR] = "🚨",
+      [vim.diagnostic.severity.WARN] = "⚠️",
+      [vim.diagnostic.severity.INFO] = "ℹ️",
+      [vim.diagnostic.severity.HINT] = "💡",
     },
   },
   jump = {
