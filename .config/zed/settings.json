@@ -7,18 +7,84 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "format_on_save": "on",
+  "semantic_tokens": "combined",
+  "gutter": {
+    "line_numbers": true
+  },
+  "use_smartcase_search": true,
+  "project_panel": {
+    "dock": "left",
+  },
+  "outline_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "context_servers": {},
+  "agent": {
+    "flexible": false,
+    "sidebar_side": "right",
+    "tool_permissions": {
+      "tools": {
+        "terminal": {
+          "always_allow": [
+            {
+              "pattern": "npx tsc",
+            },
+            {
+              "pattern": "cd",
+            },
+            {
+              "pattern": "ls",
+            },
+          ],
+        },
+      },
+    },
+    "dock": "right",
+    "default_profile": "write",
+    "default_model": {
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "enable_thinking": true,
+      "effort": "high",
+    },
+    "favorite_models": [],
+    "model_parameters": [],
+    "expand_terminal_card": false,
+    "expand_edit_card": true,
+    "thinking_display": "always_collapsed",
+  },
+  "agent_servers": {
+    "claude-acp": {
+      "default_config_options": {
+        "fast": "off",
+        "mode": "auto",
+        "effort": "medium",
+        "model": "opus[1m]",
+      },
+      "type": "registry",
+      "env": {
+        "CLAUDE_CODE_EXECUTABLE": "/Users/IDSP34262/.local/bin/claude",
+      },
+    },
+  },
+  "icon_theme": "VSCode Icons for Zed (Dark NestJS)",
   "vim": {
     "use_smartcase_find": true,
     "use_system_clipboard": "never",
   },
   "diff_view_style": "split",
   "git_panel": {
+    "dock": "left",
     "tree_view": true,
     "fallback_branch_name": "main",
   },
   "terminal": {
     "font_size": 13.0,
-    "font_family": "MesloLGM Nerd Font Mono",
+    "font_family": "MesloLGM Nerd Font",
   },
   "buffer_font_family": "SF Mono",
   "telemetry": {
@@ -35,48 +101,66 @@
     "dark": "One Dark",
   },
   "lsp": {
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always",
+          },
+        },
+        "javascript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always",
+          },
+        },
+      },
+      "enable_lsp_tasks": true,
+    },
     "biome": {
       "settings": {
         "require_config_file": true,
-        "inline_config": {
-          "formatter": {
-            "bracketSpacing": false,
-          },
-        },
       },
     },
   },
   "languages": {
-    "CSS": {
-      "formatter": ["prettier", { "language_server": { "name": "biome" } }],
-    },
     "JSON": {
-      "formatter": ["prettier", { "language_server": { "name": "biome" } }],
       "language_servers": ["json-language-server"],
+      "formatter": ["prettier"],
     },
     "JSONC": {
-      "formatter": ["prettier", { "language_server": { "name": "biome" } }],
+      "language_servers": ["json-language-server"],
+      "formatter": ["prettier"],
     },
     "JavaScript": {
-      "formatter": ["prettier", { "language_server": { "name": "biome" } }],
-      "code_actions_on_format": {
-        "source.fixAll.biome": true,
-        "source.organizeImports.biome": true,
+      "language_servers": ["vtsls"],
+      "formatter": {
+        "external": {
+          "command": "/Users/IDSP34262/.config/zed/scripts/format-ts.sh",
+          "arguments": ["{buffer_path}"],
+        },
       },
     },
     "TypeScript": {
-      "formatter": ["prettier", { "language_server": { "name": "biome" } }],
-      "code_actions_on_format": {
-        "source.fixAll.biome": true,
-        "source.organizeImports.biome": true,
+      "language_servers": ["vtsls"],
+      "formatter": {
+        "external": {
+          "command": "/Users/IDSP34262/.config/zed/scripts/format-ts.sh",
+          "arguments": ["{buffer_path}"],
+        },
       },
     },
     "TSX": {
-      "formatter": ["prettier", { "language_server": { "name": "biome" } }],
-      "code_actions_on_format": {
-        "source.fixAll.biome": true,
-        "source.organizeImports.biome": true,
+      "language_servers": ["vtsls", "tailwindcss-language-server"],
+      "formatter": {
+        "external": {
+          "command": "/Users/IDSP34262/.config/zed/scripts/format-ts.sh",
+          "arguments": ["{buffer_path}"],
+        },
       },
     },
+    "CSS": {
+      "formatter": ["prettier"],
+    },
   },
+  "lsp_document_colors": "background",
 }
